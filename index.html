@@ -462,6 +462,10 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="con-title">NAT NETWORK vs HOST-ONLY vs BRIDGED</div>
       <div class="con-body"><strong>NAT Network:</strong> VMs reach internet + each other. Your choice — correct for this lab because Kali needs to attack other VMs. <strong>Host-Only:</strong> VMs talk to each other and your laptop only — no internet. Better isolation but Kali cannot pull tools. <strong>Bridged:</strong> VM appears directly on your home Wi-Fi — NEVER USE THIS. It exposes your vulnerable VMs to every device on your home network and potentially the internet.</div>
     </div>
+    <div class="concept c1">
+      <div class="con-title">WHAT IS DHCP?</div>
+      <div class="con-body">DHCP stands for <strong>Dynamic Host Configuration Protocol</strong>. It automatically gives a device its network settings when it joins the network, instead of you typing them in manually. DHCP usually assigns the IP address, subnet mask, default gateway, and DNS server. In this lab, <strong>Target-PC</strong> can use DHCP because it is just a workstation target. Splunk and Kali use static IPs because your searches and detections need to find them at the same address every time.</div>
+    </div>
     <div class="concept c3">
       <div class="con-title">WHAT IS A DOMAIN CONTROLLER?</div>
       <div class="con-body">A Domain Controller (DC) is a Windows Server that manages authentication and policy for an entire network domain. When you log into a domain-joined machine, the DC verifies your credentials. It runs Active Directory Domain Services (AD DS) — the database of every user, computer, and policy in the domain. Your DC is <strong>ADDC01 at 192.168.10.7</strong>. If an attacker compromises the DC, they own every account in the domain.</div>
@@ -721,7 +725,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cm">    │   ├── Splunk Universal Forwarder → 192.168.10.10:9997</span>
 <span class="cl cm">    │   └── Sysmon → Operational log → shipped to Splunk</span>
 <span class="cl cm">    │</span>
-<span class="cl cy">    ├── 192.168.10.x    Machine 1 / Windows 10 (DHCP)</span>
+<span class="cl cy">    ├── 192.168.10.x    Target-PC / Windows 10 (DHCP)</span>
 <span class="cl cm">    │   ├── Domain-joined workstation: redblue\[username]</span>
 <span class="cl cm">    │   ├── Splunk Universal Forwarder → 192.168.10.10:9997</span>
 <span class="cl cm">    │   ├── Sysmon — enriched endpoint telemetry</span>
@@ -743,6 +747,11 @@ body.nav-collapsed .nav-toggle{left:12px}
       <tr><td class="hi4">kali-linux-2.x</td><td>Kali Linux 2.x</td><td class="hi4">192.168.10.250</td><td>Attacker VM — red team exercises</td><td>2–4 GB</td><td class="good">Running</td></tr>
     </tbody>
   </table>
+
+  <div class="box info" style="margin-top:12px">
+    <div class="box-lbl">DHCP in This Inventory</div>
+    <p><strong>DHCP assigned</strong> means VirtualBox automatically gives Target-PC an available 192.168.10.x address when it joins the lab network. Splunk stays static at 192.168.10.10 because every forwarder sends logs there. Kali stays static at 192.168.10.250 so Splunk searches can reliably identify attacker traffic.</p>
+  </div>
 
   <div class="box warn" style="margin-top:14px">
     <div class="box-lbl">YOUR RAM BUDGET — HP ENVY 16 GB</div>
