@@ -23,7 +23,16 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 
 /* ── NAV ── */
 .nav{position:fixed;left:0;top:0;bottom:0;width:215px;background:var(--s1);
-  border-right:1px solid var(--b1);overflow-y:auto;z-index:100;padding:0 0 24px}
+  border-right:1px solid var(--b1);overflow-y:auto;z-index:100;padding:0 0 24px;
+  transition:transform .18s}
+.nav-toggle{position:fixed;left:185px;top:12px;z-index:120;width:34px;height:34px;
+  border:1px solid var(--b1);background:var(--s2);color:var(--l1);cursor:pointer;
+  font-family:'IBM Plex Mono',monospace;font-size:18px;line-height:1;display:flex;
+  align-items:center;justify-content:center;transition:left .18s,background .12s,color .12s}
+.nav-toggle:hover{background:var(--s3);color:#fff}
+body.nav-collapsed .nav{transform:translateX(-215px)}
+body.nav-collapsed .main{margin-left:0}
+body.nav-collapsed .nav-toggle{left:12px}
 .nav-brand{padding:18px 16px 16px;border-bottom:1px solid var(--b1);margin-bottom:6px}
 .nav-mono{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--l1);
   letter-spacing:3px;display:block;margin-bottom:5px}
@@ -41,7 +50,7 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 .nla.n5:hover,.nla.n5.on{color:var(--l5);border-left-color:var(--l5);background:rgba(255,149,0,.05)}
 
 /* ── MAIN ── */
-.main{margin-left:215px}
+.main{margin-left:215px;transition:margin-left .18s}
 
 /* ── HERO ── */
 .hero{padding:52px 56px 44px;background:var(--s1);border-bottom:1px solid var(--b1);position:relative;overflow:hidden}
@@ -266,6 +275,8 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 @media(max-width:1120px){
   .nav{width:188px}
   .main{margin-left:188px}
+  .nav-toggle{left:158px}
+  body.nav-collapsed .nav{transform:translateX(-188px)}
   .nav-name{font-size:27px}
   .nla{font-size:12px;padding:5px 13px}
   .hero,.sec{padding-left:36px;padding-right:36px}
@@ -280,6 +291,8 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
     border-right:0;border-bottom:1px solid var(--b1);padding:0;background:rgba(5,14,26,.98);
     -webkit-overflow-scrolling:touch
   }
+  .nav-toggle{display:none}
+  body.nav-collapsed .nav{transform:none}
   .nav-brand{display:none}
   .nav-sec{display:none}
   .nla{
@@ -354,6 +367,8 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 </style>
 </head>
 <body>
+
+<button class="nav-toggle" type="button" aria-label="Collapse sidebar" aria-expanded="true" title="Toggle sidebar">‹</button>
 
 <!-- NAV -->
 <nav class="nav">
@@ -495,6 +510,43 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
       <strong>What it is not:</strong> Sysmon does not analyze events, generate alerts, or block anything. It is purely a telemetry generator. It produces the raw data — your Splunk SIEM interprets it. This is an important conceptual distinction: Sysmon sees everything and records it; Splunk finds the patterns that indicate threats.<br><br>
       <strong>Why it matters over standard Windows logs:</strong> Standard Windows Security logs tell you "a process was created." Sysmon tells you which process, what arguments it was given, what its parent process was, the hash of the executable, and what network connection it made immediately afterward. That chain of information is what lets you reconstruct exactly what an attacker did.</div>
     </div>
+  </div>
+
+  <div class="box info">
+    <div class="box-lbl">Simple Difference — Wireshark vs Sysmon vs Splunk</div>
+    <p>Think of the same incident from three camera angles. <strong>Wireshark is the network camera.</strong> It shows the packets moving across the wire: IP addresses, ports, DNS, TCP flags, HTTP requests, TLS handshakes, and timing. <strong>Sysmon is the endpoint camera.</strong> It shows what happened inside a Windows machine: which process ran, what command line it used, what process launched it, what network connection it made, what registry key changed, and whether something touched lsass.exe. <strong>Splunk is the search room.</strong> It collects logs from many machines, lets you search them, correlate them, build timelines, and create detections.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>TOOL</th>
+        <th>WHAT IT ANSWERS</th>
+        <th>PLAIN-LANGUAGE EXAMPLE</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hi3">Wireshark</span></td>
+        <td>What crossed the network?</td>
+        <td>"I can see Kali sent SYN packets to this Windows host. I can see which ports replied with SYN-ACK. I can see an HTTP login sent a username and password in cleartext."</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">Sysmon</span></td>
+        <td>What did this Windows endpoint do?</td>
+        <td>"I can see powershell.exe ran on this host. I can see the full command line, the parent process, the user, and whether that process made a network connection."</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">Splunk</span></td>
+        <td>What happened across all my logs?</td>
+        <td>"I can search all Sysmon and Windows logs in one place, build a timeline, count failed logons, find which host was scanned, and write an alert for the pattern."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box ok">
+    <div class="box-lbl">Interview Answer You Can Say Out Loud</div>
+    <p>"Wireshark, Sysmon, and Splunk do not show the same thing. Wireshark shows packet-level network evidence. Sysmon shows detailed endpoint activity from a Windows machine. Splunk is where I collect and search those logs across the lab. So if Kali runs a scan, Wireshark can show the actual SYN and SYN-ACK packets, Sysmon can show endpoint network events or related process activity, and Splunk lets me search and correlate the evidence into a timeline."</p>
   </div>
 
   <div class="box info">
@@ -3193,6 +3245,20 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 </main>
 
 <script>
+const navToggle=document.querySelector('.nav-toggle');
+function setNavCollapsed(collapsed){
+  if(!navToggle)return;
+  document.body.classList.toggle('nav-collapsed',collapsed);
+  navToggle.textContent=collapsed?'›':'‹';
+  navToggle.setAttribute('aria-label',collapsed?'Expand sidebar':'Collapse sidebar');
+  navToggle.setAttribute('aria-expanded',String(!collapsed));
+  localStorage.setItem('navCollapsed',collapsed?'1':'0');
+}
+if(navToggle){
+  setNavCollapsed(localStorage.getItem('navCollapsed')==='1');
+  navToggle.addEventListener('click',()=>setNavCollapsed(!document.body.classList.contains('nav-collapsed')));
+}
+
 function tog(hd){hd.closest('.step').classList.toggle('open')}
 function togC(hd){hd.closest('.ch').classList.toggle('open')}
 
