@@ -498,13 +498,13 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
   </div>
 
   <div class="box info">
-    <div class="box-lbl">Official Microsoft Sysmon Documentation Basis</div>
+    <div class="box-lbl">Reference Docs — Microsoft Sysmon</div>
     <p>This section is based on Microsoft Sysinternals documentation for <strong>Sysmon</strong>. Microsoft describes Sysmon as a Windows system service and device driver that remains installed across reboots, logs system activity to the Windows Event Log, and provides details about process creation, network connections, file creation time changes, image loads, process access, registry changes, DNS queries, and configuration changes. Microsoft also explicitly notes that Sysmon does not analyze events or hide itself from attackers — it generates telemetry for tools such as Splunk to analyze. References: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" style="color:var(--l1)">Microsoft Sysinternals Sysmon</a> | <a href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank" style="color:var(--l1)">Sysinternals Suite</a> | <a href="https://learn.microsoft.com/en-us/sysinternals/resources/webcasts" target="_blank" style="color:var(--l1)">Sysinternals webcasts</a>.</p>
   </div>
 
   <div class="box info">
-    <div class="box-lbl">Deeper YouTube Learning — Sysmon</div>
-    <p>Use these videos after you understand the Event ID table. Focus on what Sysmon records, how configuration files control event volume, and how analysts convert raw Sysmon events into SIEM detections.</p>
+    <div class="box-lbl">Reference Videos — Sysmon</div>
+    <p>Optional reference videos: use these after you understand the Event ID table. Focus on what Sysmon records, how configuration files control event volume, and how analysts convert raw Sysmon events into SIEM detections.</p>
   </div>
 
   <table class="tbl">
@@ -636,8 +636,8 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
     <p>Sysmon writes to: <strong>Event Viewer → Applications and Services Logs → Microsoft → Windows → Sysmon → Operational</strong>. The Splunk Universal Forwarder monitors this path and ships events to your SIEM index. You can also read them directly with PowerShell: <code style="color:var(--l1);background:rgba(0,180,216,.08);padding:1px 5px;font-size:16.5px">Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" -MaxEvents 20</code></p>
   </div>
   <div class="box warn" style="margin-top:8px">
-    <div class="box-lbl">SYSMON FUTURE — BUILDING INTO WINDOWS</div>
-    <p>Microsoft has announced that Sysmon's functionality will be built directly into Windows 11 and Windows Server 2025 in 2026 as an optional feature. This means it will no longer require a separate download — you will enable it like any Windows feature. Configuration files and event IDs remain the same. This is a significant endorsement of Sysmon's importance to enterprise security.</p>
+    <div class="box-lbl">SYSMON FUTURE — TRACK MICROSOFT UPDATES</div>
+    <p>Sysmon is part of Microsoft Sysinternals and Microsoft continues to evolve Windows security telemetry over time. Treat future built-in Windows logging changes as something to verify against current Microsoft documentation before updating this lab. For now, this guide uses the standalone Sysmon tool, its documented configuration model, and the Sysmon Operational event log.</p>
   </div>
 </section>
 
@@ -749,13 +749,13 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
   </div>
 
   <div class="box info">
-    <div class="box-lbl">Official Splunk Documentation Basis</div>
+    <div class="box-lbl">Reference Docs — Splunk</div>
     <p>This analyst workflow is based on Splunk's documented search model: default fields such as <strong>_time</strong>, <strong>host</strong>, <strong>source</strong>, <strong>sourcetype</strong>, and <strong>index</strong>; field search syntax using <strong>field=value</strong>; and transforming commands such as <strong>stats</strong>, <strong>table</strong>, <strong>sort</strong>, and <strong>timechart</strong>. The threat examples below are lab-specific SOC interpretations built on those documented Splunk features. References: <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Aboutdefaultfields" target="_blank" style="color:var(--l1)">Splunk default fields</a> | <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/SearchTutorial/Usefieldstosearch" target="_blank" style="color:var(--l1)">Search with fields</a> | <a href="https://docs.splunk.com/Documentation/Splunk/9.4.2/Search/Usethestatscommandandfunctions" target="_blank" style="color:var(--l1)">stats command</a> | <a href="https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Timechart" target="_blank" style="color:var(--l1)">timechart command</a>.</p>
   </div>
 
   <div class="box info">
-    <div class="box-lbl">Deeper YouTube Learning — Splunk SIEM</div>
-    <p>Use these videos after you understand the lab searches. Focus on how Splunk structures events, how SPL pipes transform results, and how security analysts turn searches into detections and dashboards.</p>
+    <div class="box-lbl">Reference Videos — Splunk SIEM</div>
+    <p>Optional reference videos: use these after you understand the lab searches. Focus on how Splunk structures events, how SPL pipes transform results, and how security analysts turn searches into detections and dashboards.</p>
   </div>
 
   <table class="tbl">
@@ -1512,13 +1512,13 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
   </div>
 
   <div class="box info">
-    <div class="box-lbl">Official Microsoft Documentation Basis</div>
+    <div class="box-lbl">Reference Docs — Microsoft AD PowerShell</div>
     <p>This automation section is based on Microsoft Learn documentation for the <strong>Active Directory module for Windows PowerShell</strong>. The scripts use documented AD cmdlets for creating users, reading user attributes, adding group membership, disabling accounts, moving directory objects, and updating account properties. The Joiner-Mover-Leaver workflow is the lab scenario; the command behavior, parameters, and object model come from Microsoft documentation. References: <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">ActiveDirectory module</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/new-aduser?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">New-ADUser</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-aduser?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Get-ADUser</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/add-adgroupmember?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Add-ADGroupMember</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/disable-adaccount?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Disable-ADAccount</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/move-adobject?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Move-ADObject</a>.</p>
   </div>
 
   <div class="box info">
-    <div class="box-lbl">Deeper YouTube Learning — AD PowerShell Automation</div>
-    <p>Use these videos to strengthen the Windows Server, Active Directory, and PowerShell concepts behind the lab scripts. Prioritize videos that show the command line and explain why each cmdlet is used.</p>
+    <div class="box-lbl">Reference Videos — AD PowerShell Automation</div>
+    <p>Optional reference videos: use these to strengthen the Windows Server, Active Directory, and PowerShell concepts behind the lab scripts. Prioritize videos that show the command line and explain why each cmdlet is used.</p>
   </div>
 
   <table class="tbl">
@@ -2312,7 +2312,7 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 
 <!-- ═══════════════ LAB 03 ═══════════════ -->
 <section class="sec" id="lab03">
-  <div class="sec-eye">LAB 03 · BEGINNER · 3–4 HRS · NO VM NEEDED</div>
+  <div class="sec-eye">LAB 03 · BEGINNER · 3–4 HRS · KALI VM NEEDED FOR ATTACK CAPTURES</div>
   <h2 style="color:#fff;margin-bottom:16px">NETWORK TRAFFIC <span style="color:var(--l3)">ANALYSIS</span></h2>
   <div class="lbanner lb3" data-n="03">
     <div class="lb-eye">LAB_03 · WIRESHARK — CAPTURE REAL KALI ATTACK TRAFFIC</div>
@@ -2349,14 +2349,19 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
     <p>Do not start by clicking random packets. Start wide, then narrow down. First identify the time window, top talkers, protocols, and unusual volume. Then filter to the suspicious conversation and read the packet sequence from top to bottom like a timeline: who initiated, who responded, what protocol was used, what data was exposed, and whether the behavior matches normal baseline traffic.</p>
   </div>
 
+  <div class="box info">
+    <div class="box-lbl">Packet Evidence vs Endpoint Evidence</div>
+    <p><strong>Wireshark sees packet-level evidence:</strong> raw network frames, TCP flags, DNS queries, HTTP requests, TLS handshakes, timing, and byte-level conversations. <strong>Sysmon and Splunk see endpoint/log evidence:</strong> process creation, network connections recorded by the host, logon events, registry changes, and process access events. Use Wireshark to prove what crossed the network; use Splunk/Sysmon to prove which host, user, and process caused it. The strongest investigation uses both views together.</p>
+  </div>
+
   <div class="box ok">
-    <div class="box-lbl">Official Wireshark Documentation Basis</div>
+    <div class="box-lbl">Reference Docs — Wireshark</div>
     <p>This workflow is based on Wireshark's documented analysis views and display filter reference. The <strong>Protocol Hierarchy</strong>, <strong>Conversations</strong>, <strong>I/O Graphs</strong>, and <strong>Follow TCP Stream</strong> items come from the Wireshark User's Guide. The filters below use official Wireshark display filter fields, including <strong>tcp.flags.syn</strong>, <strong>tcp.flags.ack</strong>, <strong>tcp.flags.reset</strong>, <strong>http.request.method</strong>, <strong>dns</strong>, <strong>tls.handshake.type</strong>, and <strong>tls.handshake.extensions_server_name</strong>. The attack interpretations are lab-specific analysis examples built from those documented fields. References: <a href="https://www.wireshark.org/docs/wsug_html/" target="_blank" style="color:var(--l3)">Wireshark User's Guide</a> | <a href="https://www.wireshark.org/docs/man-pages/wireshark-filter" target="_blank" style="color:var(--l3)">wireshark-filter manual</a> | <a href="https://www.wireshark.org/docs/dfref/t/tcp.html" target="_blank" style="color:var(--l3)">TCP display fields</a> | <a href="https://www.wireshark.org/docs/dfref/h/http.html" target="_blank" style="color:var(--l3)">HTTP display fields</a> | <a href="https://www.wireshark.org/docs/dfref/d/dns.html" target="_blank" style="color:var(--l3)">DNS display fields</a> | <a href="https://www.wireshark.org/docs/dfref/t/tls.html" target="_blank" style="color:var(--l3)">TLS display fields</a>.</p>
   </div>
 
   <div class="box ok">
-    <div class="box-lbl">Deeper YouTube Learning — Wireshark</div>
-    <p>Use these videos after you complete the baseline and Nmap captures. Focus on capture placement, display filters, TCP behavior, protocol hierarchy, conversations, and reading packet timelines.</p>
+    <div class="box-lbl">Reference Videos — Wireshark</div>
+    <p>Optional reference videos: use these after you complete the baseline and Nmap captures. Focus on capture placement, display filters, TCP behavior, protocol hierarchy, conversations, and reading packet timelines.</p>
   </div>
 
   <table class="tbl">
@@ -2660,13 +2665,13 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
   <div class="box danger"><div class="box-lbl">Before Every Kali Session — Verify Scope</div><p>Run <code style="color:var(--l4);font-size:16.5px;background:rgba(255,68,68,.1);padding:1px 4px">ip a</code> on Kali. Confirm your IP is 192.168.10.250. Only target 192.168.10.0/24 addresses. Document every attack with timestamp and exact command. These are your lab logs and your legal record of authorized testing.</p></div>
 
   <div class="box l4">
-    <div class="box-lbl">Official Kali Linux Documentation Basis</div>
+    <div class="box-lbl">Reference Docs — Kali Linux</div>
     <p>This section is based on Kali Linux's official documentation for virtual machines, official images, tool documentation, metapackages, and community/support resources. The lab uses Kali as an attacker VM inside your isolated VirtualBox network and focuses on documented tools such as <strong>Nmap</strong> for network discovery, <strong>Hydra</strong> for controlled password attack simulation, and Metasploit-related workflows for exploitation practice. The commands are lab-specific and must only be run against systems you own or are explicitly authorized to test. References: <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/" target="_blank" style="color:var(--l4)">Kali inside VirtualBox</a> | <a href="https://www.kali.org/docs/introduction/download-official-kali-linux-images/" target="_blank" style="color:var(--l4)">Official Kali images</a> | <a href="https://www.kali.org/tools/" target="_blank" style="color:var(--l4)">Kali Tools</a> | <a href="https://www.kali.org/tools/nmap/" target="_blank" style="color:var(--l4)">Nmap in Kali</a> | <a href="https://www.kali.org/tools/hydra/" target="_blank" style="color:var(--l4)">Hydra in Kali</a> | <a href="https://www.kali.org/community/" target="_blank" style="color:var(--l4)">Kali community/support</a>.</p>
   </div>
 
   <div class="box l4">
-    <div class="box-lbl">Deeper YouTube Learning — Kali Linux</div>
-    <p>Use these videos to deepen the attacker-side workflow after you understand the lab scope rules. Focus on legal lab setup, reconnaissance, command documentation, and how each Kali action creates evidence in Splunk, Sysmon, and Wireshark.</p>
+    <div class="box-lbl">Reference Videos — Kali Linux</div>
+    <p>Optional reference videos: use these to deepen the attacker-side workflow after you understand the lab scope rules. Focus on legal lab setup, reconnaissance, command documentation, and how each Kali action creates evidence in Splunk, Sysmon, and Wireshark.</p>
   </div>
 
   <table class="tbl">
@@ -2860,12 +2865,12 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
   </div>
 
   <div class="box l5" style="margin-top:4px">
-    <div class="box-lbl">Official Spiceworks Documentation Basis</div>
+    <div class="box-lbl">Reference Docs — Spiceworks</div>
     <p>This ticketing section is based on Spiceworks Cloud Help Desk as the current browser-based Spiceworks help desk product, plus the official Spiceworks Help Center for product support requests. The lab workflow uses standard help desk concepts inside Spiceworks: tickets, categories, priorities, assignments, comments/internal notes, user communication, and closure documentation. The SOC severity model and Splunk-to-ticket process are lab-specific operational procedures built on those ticketing features. References: <a href="https://www.spiceworks.com/free-help-desk-software/" target="_blank" style="color:var(--l5)">Spiceworks Help Desk</a> | <a href="https://spicey.atlassian.net/servicedesk/customer/portals" target="_blank" style="color:var(--l5)">Spiceworks Help Center</a> | <a href="https://community.spiceworks.com/" target="_blank" style="color:var(--l5)">Spiceworks Community</a>.</p>
   </div>
 
   <div class="box l5" style="margin-top:4px">
-    <div class="box-lbl">Deeper YouTube Learning — Spiceworks Cloud</div>
+    <div class="box-lbl">Reference Videos — Spiceworks Cloud</div>
     <p>Spiceworks Cloud changes over time, so use current videos for screen-by-screen navigation and use the official docs/community for final confirmation. Focus on ticket creation, user portal intake, assignment, priorities, categories, notes, and closure.</p>
   </div>
 
