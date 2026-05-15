@@ -415,6 +415,39 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
     </div>
   </div>
 
+  <div class="box info">
+    <div class="box-lbl">Official Microsoft Sysmon Documentation Basis</div>
+    <p>This section is based on Microsoft Sysinternals documentation for <strong>Sysmon</strong>. Microsoft describes Sysmon as a Windows system service and device driver that remains installed across reboots, logs system activity to the Windows Event Log, and provides details about process creation, network connections, file creation time changes, image loads, process access, registry changes, DNS queries, and configuration changes. Microsoft also explicitly notes that Sysmon does not analyze events or hide itself from attackers — it generates telemetry for tools such as Splunk to analyze. References: <a href="https://learn.microsoft.com/en-us/sysinternals/downloads/sysmon" target="_blank" style="color:var(--l1)">Microsoft Sysinternals Sysmon</a> | <a href="https://learn.microsoft.com/en-us/sysinternals/" target="_blank" style="color:var(--l1)">Sysinternals Suite</a> | <a href="https://learn.microsoft.com/en-us/sysinternals/resources/webcasts" target="_blank" style="color:var(--l1)">Sysinternals webcasts</a>.</p>
+  </div>
+
+  <div class="box info">
+    <div class="box-lbl">Deeper YouTube Learning — Sysmon</div>
+    <p>Use these videos after you understand the Event ID table. Focus on what Sysmon records, how configuration files control event volume, and how analysts convert raw Sysmon events into SIEM detections.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>VIDEO RESOURCE</th>
+        <th>WHY WATCH IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Defrag+Tools+108+Sysinternals+Sysmon+Mark+Russinovich" target="_blank" style="color:var(--l1)">Sysinternals Sysmon with Mark Russinovich</a></td>
+        <td>Search for Microsoft's Sysinternals/Defrag Tools Sysmon episode to hear the tool explained from the Sysinternals perspective.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Sysmon+tutorial+Event+ID+1+3+10+Splunk" target="_blank" style="color:var(--l1)">Sysmon Event ID detection tutorials</a></td>
+        <td>Use this for hands-on examples of Event ID 1 process creation, Event ID 3 network connections, and Event ID 10 LSASS/process access detections.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Sysmon+configuration+SwiftOnSecurity+Olaf+Hartong" target="_blank" style="color:var(--l1)">Sysmon configuration tuning videos</a></td>
+        <td>Use this to learn why production Sysmon deployments need tuned XML configuration files to reduce noise and preserve high-value security telemetry.</td>
+      </tr>
+    </tbody>
+  </table>
+
   <h3 style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:3px;color:var(--muted);text-transform:uppercase;margin:18px 0 10px">SYSMON EVENT ID REFERENCE — VERIFIED FROM MICROSOFT LEARN AND SYSINTERNALS</h3>
 
   <table class="sysmon-table">
@@ -626,6 +659,181 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
   <div class="box warn">
     <div class="box-lbl">Splunk License Facts — Verified from Official Documentation (splunk.com)</div>
     <p><strong>60-day Enterprise Trial:</strong> Full features — alerting, authentication, forwarding, dashboards, saved searches. <strong>After 60 days (Splunk Free):</strong> 500 MB/day indexing limit (sufficient for 2–3 endpoints), alerting completely disabled, authentication removed (anyone reaching port 8000 auto-logs in as admin). <strong>Strategy:</strong> Build and test every detection rule during the trial window. After expiry, run searches manually — they still work.</p>
+  </div>
+
+  <div class="box info">
+    <div class="box-lbl">How to Read Splunk SIEM Data</div>
+    <p>Read Splunk like an investigation timeline, not like a random list of logs. Start with the alert or question, lock the time window, identify the affected host and user, then pivot through related events before and after the suspicious activity. A single event rarely proves the whole incident. The analyst work is connecting events into a sequence: login, process execution, network connection, file or registry change, privilege use, and cleanup.</p>
+  </div>
+
+  <div class="box info">
+    <div class="box-lbl">Official Splunk Documentation Basis</div>
+    <p>This analyst workflow is based on Splunk's documented search model: default fields such as <strong>_time</strong>, <strong>host</strong>, <strong>source</strong>, <strong>sourcetype</strong>, and <strong>index</strong>; field search syntax using <strong>field=value</strong>; and transforming commands such as <strong>stats</strong>, <strong>table</strong>, <strong>sort</strong>, and <strong>timechart</strong>. The threat examples below are lab-specific SOC interpretations built on those documented Splunk features. References: <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/Data/Aboutdefaultfields" target="_blank" style="color:var(--l1)">Splunk default fields</a> | <a href="https://docs.splunk.com/Documentation/SplunkCloud/latest/SearchTutorial/Usefieldstosearch" target="_blank" style="color:var(--l1)">Search with fields</a> | <a href="https://docs.splunk.com/Documentation/Splunk/9.4.2/Search/Usethestatscommandandfunctions" target="_blank" style="color:var(--l1)">stats command</a> | <a href="https://docs.splunk.com/Documentation/Splunk/latest/SearchReference/Timechart" target="_blank" style="color:var(--l1)">timechart command</a>.</p>
+  </div>
+
+  <div class="box info">
+    <div class="box-lbl">Deeper YouTube Learning — Splunk SIEM</div>
+    <p>Use these videos after you understand the lab searches. Focus on how Splunk structures events, how SPL pipes transform results, and how security analysts turn searches into detections and dashboards.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>VIDEO RESOURCE</th>
+        <th>WHY WATCH IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.youtube.com/watch?v=YM3UWuvIJyc" target="_blank" style="color:var(--l1)">Splunk SPL primer video</a></td>
+        <td>Splunk's own getting-started tutorial page embeds this SPL primer. Use it to go deeper on SPL search structure, fields, pipes, and transforming commands.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/@splunkofficial/search?query=Search%20Processing%20Language" target="_blank" style="color:var(--l1)">Splunk official channel — SPL searches</a></td>
+        <td>Use this for current Splunk videos on SPL, dashboards, alerts, and practical search workflows.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/@splunkofficial/search?query=security%20essentials%20SIEM" target="_blank" style="color:var(--l1)">Splunk official channel — security use cases</a></td>
+        <td>Use this to connect your lab detections to real SOC use cases, SIEM workflows, and security content.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>SPLUNK FIELD OR VIEW</th>
+        <th>HOW TO READ IT</th>
+        <th>WHAT TO LOOK FOR</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hi1">_time</span></td>
+        <td>The exact event timestamp. Always sort by time when building a timeline.</td>
+        <td>Bursts of activity, event order, activity outside business hours, or events immediately before/after an alert.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">host / ComputerName</span></td>
+        <td>The endpoint that generated the log.</td>
+        <td>Whether the event happened on a workstation, server, or domain controller. Events on ADDC01 usually carry higher risk.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">User</span></td>
+        <td>The account context for the action.</td>
+        <td>Admin accounts used from normal workstations, disabled users, service accounts logging in interactively, or users acting at unusual times.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">EventCode</span></td>
+        <td>The Windows or Sysmon event type.</td>
+        <td>High-value events: Sysmon 1 process create, 3 network connection, 10 process access, 13 registry value set; Windows 4624 successful logon, 4625 failed logon, 7045 service installed.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">Image</span></td>
+        <td>The executable that ran or made a network connection.</td>
+        <td>PowerShell, cmd.exe, rundll32.exe, regsvr32.exe, mshta.exe, wscript.exe, unknown paths, or binaries running from Downloads, Temp, or AppData.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">CommandLine</span></td>
+        <td>The full command used to launch the process.</td>
+        <td>EncodedCommand, IEX, DownloadString, web URLs, suspicious script paths, credential dumping commands, or admin tools used unexpectedly.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">ParentImage</span></td>
+        <td>The process that launched the suspicious process.</td>
+        <td>Office spawning PowerShell, browser spawning cmd.exe, or a service spawning a user tool. Parent-child process relationships explain how execution started.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">SourceIp / IpAddress</span></td>
+        <td>The remote IP that initiated a connection or logon.</td>
+        <td>Kali IP 192.168.10.250, unknown external addresses, one source hitting many targets, or a workstation logging into a server unexpectedly.</td>
+      </tr>
+      <tr>
+        <td><span class="hi1">DestinationIp / DestinationPort</span></td>
+        <td>The target IP and port for network activity.</td>
+        <td>Many ports on one host means scanning. Connections to 445, 3389, 5985, or 5986 may indicate lateral movement or remote administration.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="code"><pre>
+<span class="cl cm"># Basic Splunk SIEM investigation workflow</span>
+<span class="cl cd">1. Start with the narrowest known fact</span>
+<span class="cl cm"># Example: alert name, EventCode, host, user, attacker IP, or timestamp</span>
+<span class="cl ce"> </span>
+<span class="cl cd">2. Set the time picker carefully</span>
+<span class="cl cm"># Start with alert time +/- 15 minutes, then expand if needed</span>
+<span class="cl ce"> </span>
+<span class="cl cd">3. Pull the timeline</span>
+<span class="cl cd">index=sysmon OR index=wineventlog earliest=-30m</span>
+<span class="cl cd">| table _time, index, host, ComputerName, EventCode, User, Image, CommandLine, SourceIp, DestinationIp, DestinationPort</span>
+<span class="cl cd">| sort _time</span>
+<span class="cl ce"> </span>
+<span class="cl cd">4. Summarize before reading every raw event</span>
+<span class="cl cd">index=sysmon earliest=-30m</span>
+<span class="cl cd">| stats count by EventCode, ComputerName</span>
+<span class="cl cd">| sort -count</span>
+<span class="cl ce"> </span>
+<span class="cl cd">5. Pivot on the suspicious field</span>
+<span class="cl cm"># If the suspicious field is User, search that user across all logs</span>
+<span class="cl cd">index=sysmon OR index=wineventlog User="redblue\\analyst.one" earliest=-2h</span>
+<span class="cl cd">| table _time, EventCode, ComputerName, Image, CommandLine, SourceIp, DestinationIp</span>
+<span class="cl cd">| sort _time</span>
+<span class="cl cm"># If the suspicious field is IP, search that IP across network and logon events</span>
+<span class="cl cd">(index=sysmon SourceIp="192.168.10.250") OR (index=wineventlog IpAddress="192.168.10.250")</span>
+<span class="cl cd">| table _time, EventCode, ComputerName, User, SourceIp, IpAddress, DestinationIp, DestinationPort</span>
+<span class="cl cd">| sort _time</span></pre>
+  </div>
+
+  <div class="concepts">
+    <div class="concept c1">
+      <div class="con-title">EXAMPLE: PROCESS EXECUTION</div>
+      <div class="con-body">Search <code style="color:var(--l1);font-size:15px">index=sysmon EventCode=1</code> to read process creation. Focus on <strong>Image</strong>, <strong>CommandLine</strong>, <strong>ParentImage</strong>, <strong>User</strong>, and <strong>ComputerName</strong>. Suspicious example: <code style="color:var(--l1);font-size:15px">powershell.exe -EncodedCommand</code> launched by Word or a browser. That suggests script execution from a phishing or download path.</div>
+    </div>
+    <div class="concept c1">
+      <div class="con-title">EXAMPLE: PORT SCAN DETECTION</div>
+      <div class="con-body">Search <code style="color:var(--l1);font-size:15px">index=sysmon EventCode=3</code> and group by <strong>SourceIp</strong>, <strong>DestinationIp</strong>, and distinct <strong>DestinationPort</strong>. If one source IP touches dozens or hundreds of ports on one target in a short window, treat it as reconnaissance. In this lab, <strong>192.168.10.250</strong> should immediately stand out as Kali.</div>
+    </div>
+    <div class="concept c1">
+      <div class="con-title">EXAMPLE: PASSWORD SPRAY</div>
+      <div class="con-body">Search Windows failed logons with <code style="color:var(--l1);font-size:15px">index=wineventlog EventCode=4625</code>. A brute force is many failures against one account. A password spray is failures across many unique accounts from one source IP. Use <code style="color:var(--l1);font-size:15px">dc(Account_Name)</code> to count unique accounts.</div>
+    </div>
+    <div class="concept c1">
+      <div class="con-title">EXAMPLE: LSASS ACCESS</div>
+      <div class="con-body">Search <code style="color:var(--l1);font-size:15px">index=sysmon EventCode=10 TargetImage="*lsass.exe"</code>. Focus on <strong>SourceImage</strong>, <strong>GrantedAccess</strong>, <strong>User</strong>, and <strong>ComputerName</strong>. Unknown tools reading lsass.exe on ADDC01 are critical because this may indicate credential dumping.</div>
+    </div>
+  </div>
+
+  <div class="code"><pre>
+<span class="cl cm"># Useful SPL patterns for analysis</span>
+<span class="cl cm"># Count events by type and host</span>
+<span class="cl cd">index=sysmon | stats count by EventCode, ComputerName | sort -count</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Build a process execution timeline for one host</span>
+<span class="cl cd">index=sysmon EventCode=1 ComputerName="WIN10"</span>
+<span class="cl cd">| table _time, User, ParentImage, Image, CommandLine</span>
+<span class="cl cd">| sort _time</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Find rare process names in the lab</span>
+<span class="cl cd">index=sysmon EventCode=1</span>
+<span class="cl cd">| stats count by Image</span>
+<span class="cl cd">| sort count</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Detect many destination ports from one source</span>
+<span class="cl cd">index=sysmon EventCode=3</span>
+<span class="cl cd">| bucket _time span=30s</span>
+<span class="cl cd">| stats dc(DestinationPort) as unique_ports, values(DestinationPort) as ports by _time, SourceIp, DestinationIp</span>
+<span class="cl cd">| where unique_ports > 50</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Detect password spray behavior</span>
+<span class="cl cd">index=wineventlog EventCode=4625</span>
+<span class="cl cd">| bucket _time span=5m</span>
+<span class="cl cd">| stats count, dc(Account_Name) as unique_accounts, values(Account_Name) as accounts by _time, IpAddress</span>
+<span class="cl cd">| where unique_accounts > 3</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Write the final analyst finding</span>
+<span class="cl cm"># At [time], [source] performed [behavior] against [target]. Evidence: [EventCodes/fields].</span>
+<span class="cl cm"># Assessment: true positive / benign admin activity / needs escalation. Recommended action: [specific next step].</span></pre>
   </div>
 </section>
 
@@ -1220,6 +1428,39 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
     <div class="box-lbl">WHY AUTOMATION MATTERS FOR IAM</div>
     <p>Manual AD management does not scale. A company with 5,000 employees cannot create, modify, and deactivate accounts one at a time. IAM teams use PowerShell scripts to automate the Joiner-Mover-Leaver lifecycle, run scheduled access reviews, generate compliance reports, and enforce access governance policies. Every script you write here maps directly to a task in an IAM Analyst job description. This is not extra credit — it is the core of the role.</p>
   </div>
+
+  <div class="box info">
+    <div class="box-lbl">Official Microsoft Documentation Basis</div>
+    <p>This automation section is based on Microsoft Learn documentation for the <strong>Active Directory module for Windows PowerShell</strong>. The scripts use documented AD cmdlets for creating users, reading user attributes, adding group membership, disabling accounts, moving directory objects, and updating account properties. The Joiner-Mover-Leaver workflow is the lab scenario; the command behavior, parameters, and object model come from Microsoft documentation. References: <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">ActiveDirectory module</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/new-aduser?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">New-ADUser</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/get-aduser?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Get-ADUser</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/add-adgroupmember?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Add-ADGroupMember</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/disable-adaccount?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Disable-ADAccount</a> | <a href="https://learn.microsoft.com/en-us/powershell/module/activedirectory/move-adobject?view=windowsserver2025-ps" target="_blank" style="color:var(--l2)">Move-ADObject</a>.</p>
+  </div>
+
+  <div class="box info">
+    <div class="box-lbl">Deeper YouTube Learning — AD PowerShell Automation</div>
+    <p>Use these videos to strengthen the Windows Server, Active Directory, and PowerShell concepts behind the lab scripts. Prioritize videos that show the command line and explain why each cmdlet is used.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>VIDEO RESOURCE</th>
+        <th>WHY WATCH IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.youtube.com/@MicrosoftDeveloper/search?query=Active%20Directory%20PowerShell" target="_blank" style="color:var(--l2)">Microsoft Developer — AD PowerShell searches</a></td>
+        <td>Use this for Microsoft-produced videos that connect PowerShell administration with Windows and identity management concepts.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/@JohnSavill/search?query=Active%20Directory" target="_blank" style="color:var(--l2)">John Savill — Active Directory deep dives</a></td>
+        <td>Good for the bigger AD architecture behind the scripts: domains, DCs, authentication, OUs, groups, and enterprise identity basics.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Active+Directory+PowerShell+New-ADUser+Add-ADGroupMember" target="_blank" style="color:var(--l2)">AD PowerShell scripting videos</a></td>
+        <td>Use this search for hands-on examples of <code style="color:var(--l2);font-size:15px">New-ADUser</code>, <code style="color:var(--l2);font-size:15px">Import-Csv</code>, and group assignment automation.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="box warn" style="margin-top:8px">
     <div class="box-lbl">BEFORE YOU START — EXECUTION POLICY</div>
@@ -2020,6 +2261,142 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
       <div class="con-body">DNS (Domain Name System) queries are sent in cleartext before the HTTPS connection is established. This means even though HTTPS encrypts the content, an observer can see every domain name you looked up — revealing which websites you visited. This is why <strong>DNS-over-HTTPS (DoH)</strong> was created — it encrypts the DNS lookup itself. In your lab, every tool Kali runs that needs a hostname generates a DNS query visible in Wireshark filter <code style="color:var(--l3);font-size:15px">dns</code>.</div>
     </div>
   </div>
+
+  <div class="box ok">
+    <div class="box-lbl">How to Read Network Traffic</div>
+    <p>Do not start by clicking random packets. Start wide, then narrow down. First identify the time window, top talkers, protocols, and unusual volume. Then filter to the suspicious conversation and read the packet sequence from top to bottom like a timeline: who initiated, who responded, what protocol was used, what data was exposed, and whether the behavior matches normal baseline traffic.</p>
+  </div>
+
+  <div class="box ok">
+    <div class="box-lbl">Official Wireshark Documentation Basis</div>
+    <p>This workflow is based on Wireshark's documented analysis views and display filter reference. The <strong>Protocol Hierarchy</strong>, <strong>Conversations</strong>, <strong>I/O Graphs</strong>, and <strong>Follow TCP Stream</strong> items come from the Wireshark User's Guide. The filters below use official Wireshark display filter fields, including <strong>tcp.flags.syn</strong>, <strong>tcp.flags.ack</strong>, <strong>tcp.flags.reset</strong>, <strong>http.request.method</strong>, <strong>dns</strong>, <strong>tls.handshake.type</strong>, and <strong>tls.handshake.extensions_server_name</strong>. The attack interpretations are lab-specific analysis examples built from those documented fields. References: <a href="https://www.wireshark.org/docs/wsug_html/" target="_blank" style="color:var(--l3)">Wireshark User's Guide</a> | <a href="https://www.wireshark.org/docs/man-pages/wireshark-filter" target="_blank" style="color:var(--l3)">wireshark-filter manual</a> | <a href="https://www.wireshark.org/docs/dfref/t/tcp.html" target="_blank" style="color:var(--l3)">TCP display fields</a> | <a href="https://www.wireshark.org/docs/dfref/h/http.html" target="_blank" style="color:var(--l3)">HTTP display fields</a> | <a href="https://www.wireshark.org/docs/dfref/d/dns.html" target="_blank" style="color:var(--l3)">DNS display fields</a> | <a href="https://www.wireshark.org/docs/dfref/t/tls.html" target="_blank" style="color:var(--l3)">TLS display fields</a>.</p>
+  </div>
+
+  <div class="box ok">
+    <div class="box-lbl">Deeper YouTube Learning — Wireshark</div>
+    <p>Use these videos after you complete the baseline and Nmap captures. Focus on capture placement, display filters, TCP behavior, protocol hierarchy, conversations, and reading packet timelines.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>VIDEO RESOURCE</th>
+        <th>WHY WATCH IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.youtube.com/@WireSharkFest" target="_blank" style="color:var(--l3)">SharkFest / Wireshark official channel</a></td>
+        <td>Wireshark's Learn page points to this channel for tutorials and classes. Use it for deeper protocol analysis and real packet-analysis talks.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/channel/UCHN1aYRP473xX6Z13H_mxMQ" target="_blank" style="color:var(--l3)">Chris Greer — Wireshark packet analysis</a></td>
+        <td>Strong hands-on Wireshark instruction for TCP analysis, filters, troubleshooting, malware traffic, and spotting indicators in PCAPs.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Chris+Greer+Wireshark+for+Beginners+Capture+Network+Traffic" target="_blank" style="color:var(--l3)">Wireshark beginner capture workflow videos</a></td>
+        <td>Use this search when you need step-by-step visual help with interface selection, capture start/stop, display filters, and reading packets.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>WHAT TO CHECK</th>
+        <th>WIRESHARK VIEW OR FILTER</th>
+        <th>WHAT IT TELLS YOU</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="hi3">Big picture</span></td>
+        <td>Statistics → Protocol Hierarchy</td>
+        <td>Which protocols dominate the capture. A normal idle lab may show DNS, ARP, TCP, TLS, and small background traffic. A scan may show a sudden large percentage of TCP SYN packets.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Top talkers</span></td>
+        <td>Statistics → Conversations</td>
+        <td>Which IP addresses communicated the most. One source IP contacting one target on many ports is a strong reconnaissance pattern.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Time spike</span></td>
+        <td>Statistics → IO Graph</td>
+        <td>When traffic increased. Use this timestamp to correlate with Splunk, Sysmon EventCode 3, Windows logon failures, or attack commands you ran from Kali.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Connection starts</span></td>
+        <td><code style="color:var(--l3);font-size:15px">tcp.flags.syn==1 and tcp.flags.ack==0</code></td>
+        <td>Initial TCP connection attempts. Many SYN packets from one host to sequential destination ports usually means a port scan.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Open ports</span></td>
+        <td><code style="color:var(--l3);font-size:15px">tcp.flags.syn==1 and tcp.flags.ack==1</code></td>
+        <td>The target answered with SYN-ACK, which means the port is open and accepting TCP connections.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Closed ports</span></td>
+        <td><code style="color:var(--l3);font-size:15px">tcp.flags.reset==1</code></td>
+        <td>The target rejected or reset the connection. During a scan, many RST packets usually mean many closed ports.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">DNS lookups</span></td>
+        <td><code style="color:var(--l3);font-size:15px">dns</code></td>
+        <td>Domains requested by a host. Suspicious examples include newly generated domains, unusual external destinations, or a host resolving many unrelated domains quickly.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Cleartext data</span></td>
+        <td><code style="color:var(--l3);font-size:15px">http.request.method=="POST"</code></td>
+        <td>HTTP form submissions. Click the packet, expand the HTTP form data, and check whether usernames, passwords, tokens, or session values are readable.</td>
+      </tr>
+      <tr>
+        <td><span class="hi3">Encrypted destinations</span></td>
+        <td><code style="color:var(--l3);font-size:15px">tls.handshake.type==1</code></td>
+        <td>TLS ClientHello packets. The content is encrypted, but the destination hostname may still appear in the SNI field.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="code"><pre>
+<span class="cl cm"># Example investigation workflow for any suspicious PCAP</span>
+<span class="cl cd">1. Statistics → Protocol Hierarchy</span>
+<span class="cl cm"># Ask: what protocols are present, and does one protocol dominate?</span>
+<span class="cl cd">2. Statistics → Conversations</span>
+<span class="cl cm"># Ask: which source IP talked to the most destinations or ports?</span>
+<span class="cl cd">3. Filter for the suspected behavior</span>
+<span class="cl cm"># Port scan:</span>
+<span class="cl cd">tcp.flags.syn==1 and tcp.flags.ack==0</span>
+<span class="cl cm"># HTTP credential exposure:</span>
+<span class="cl cd">http.request.method=="POST"</span>
+<span class="cl cm"># DNS investigation:</span>
+<span class="cl cd">dns</span>
+<span class="cl cm"># HTTPS hostname visibility:</span>
+<span class="cl cd">tls.handshake.type==1</span>
+<span class="cl cd">4. Right-click suspicious packet → Follow → TCP Stream</span>
+<span class="cl cm"># Ask: can you read the content, or is it encrypted?</span>
+<span class="cl cd">5. Write the finding in plain language</span>
+<span class="cl cm"># Example: 192.168.10.250 sent SYN packets to 192.168.10.20 ports 1-1000.</span>
+<span class="cl cm"># The target returned SYN-ACK on 80 and 445, indicating open web and SMB services.</span></pre>
+  </div>
+
+  <div class="concepts">
+    <div class="concept c3">
+      <div class="con-title">EXAMPLE: NMAP PORT SCAN</div>
+      <div class="con-body">Look for one source IP sending many <strong>SYN</strong> packets to one target across many destination ports. Open ports respond with <strong>SYN-ACK</strong>; closed ports respond with <strong>RST</strong>. The analyst finding should name the attacker IP, target IP, port range, open ports discovered, and scan time window.</div>
+    </div>
+    <div class="concept c3">
+      <div class="con-title">EXAMPLE: HTTP PASSWORD EXPOSURE</div>
+      <div class="con-body">Filter for <code style="color:var(--l3);font-size:15px">http.request.method=="POST"</code>, click the POST packet, and expand the form fields. If you can read a username or password, the risk is high because any on-path observer could also read it. Your finding should include the site, timestamp, exposed fields, and immediate action: change the password.</div>
+    </div>
+    <div class="concept c3">
+      <div class="con-title">EXAMPLE: SUSPICIOUS DNS</div>
+      <div class="con-body">Filter <code style="color:var(--l3);font-size:15px">dns</code> and review the queried names. Watch for repeated failed lookups, strange random-looking domains, domains unrelated to the user's work, or one host making many DNS requests in a short time. DNS is often the first clue before a web connection or malware callback.</div>
+    </div>
+    <div class="concept c3">
+      <div class="con-title">EXAMPLE: HTTPS CONNECTION</div>
+      <div class="con-body">For HTTPS, you usually cannot read page content or passwords. Instead, analyze metadata: destination IP, SNI hostname, certificate details, connection timing, and data volume. A large upload to an unusual hostname may be more important than the encrypted bytes themselves.</div>
+    </div>
+  </div>
 </section>
 
 <section class="sec" id="lab03s" style="padding-top:0;border-top:none">
@@ -2199,6 +2576,43 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
     </div>
   </div>
   <div class="box danger"><div class="box-lbl">Before Every Kali Session — Verify Scope</div><p>Run <code style="color:var(--l4);font-size:16.5px;background:rgba(255,68,68,.1);padding:1px 4px">ip a</code> on Kali. Confirm your IP is 192.168.10.250. Only target 192.168.10.0/24 addresses. Document every attack with timestamp and exact command. These are your lab logs and your legal record of authorized testing.</p></div>
+
+  <div class="box l4">
+    <div class="box-lbl">Official Kali Linux Documentation Basis</div>
+    <p>This section is based on Kali Linux's official documentation for virtual machines, official images, tool documentation, metapackages, and community/support resources. The lab uses Kali as an attacker VM inside your isolated VirtualBox network and focuses on documented tools such as <strong>Nmap</strong> for network discovery, <strong>Hydra</strong> for controlled password attack simulation, and Metasploit-related workflows for exploitation practice. The commands are lab-specific and must only be run against systems you own or are explicitly authorized to test. References: <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/" target="_blank" style="color:var(--l4)">Kali inside VirtualBox</a> | <a href="https://www.kali.org/docs/introduction/download-official-kali-linux-images/" target="_blank" style="color:var(--l4)">Official Kali images</a> | <a href="https://www.kali.org/tools/" target="_blank" style="color:var(--l4)">Kali Tools</a> | <a href="https://www.kali.org/tools/nmap/" target="_blank" style="color:var(--l4)">Nmap in Kali</a> | <a href="https://www.kali.org/tools/hydra/" target="_blank" style="color:var(--l4)">Hydra in Kali</a> | <a href="https://www.kali.org/community/" target="_blank" style="color:var(--l4)">Kali community/support</a>.</p>
+  </div>
+
+  <div class="box l4">
+    <div class="box-lbl">Deeper YouTube Learning — Kali Linux</div>
+    <p>Use these videos to deepen the attacker-side workflow after you understand the lab scope rules. Focus on legal lab setup, reconnaissance, command documentation, and how each Kali action creates evidence in Splunk, Sysmon, and Wireshark.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>VIDEO RESOURCE</th>
+        <th>WHY WATCH IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+VirtualBox+official+setup+OffSec" target="_blank" style="color:var(--l4)">Kali Linux VirtualBox setup videos</a></td>
+        <td>Use this for visual help importing or installing Kali as a VM, configuring networking, and confirming the machine is isolated to your lab.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+Nmap+tutorial+OffSec+network+scan" target="_blank" style="color:var(--l4)">Kali + Nmap reconnaissance videos</a></td>
+        <td>Use this to go deeper on host discovery, service/version scanning, port ranges, scan timing, output files, and how Nmap traffic appears in Wireshark and Sysmon.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+Hydra+tutorial+authorized+lab" target="_blank" style="color:var(--l4)">Kali + Hydra lab videos</a></td>
+        <td>Use this for controlled password-attack demonstrations in lab environments, then compare the activity with your Splunk failed-logon detections.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+Metasploit+beginner+authorized+lab+OffSec" target="_blank" style="color:var(--l4)">Kali + Metasploit beginner lab videos</a></td>
+        <td>Use this only in isolated practice targets to understand the exploit workflow: enumerate, select module, configure options, run, and document artifacts.</td>
+      </tr>
+    </tbody>
+  </table>
 </section>
 
 <section class="sec" id="lab04s" style="padding-top:0;border-top:none">
@@ -2362,6 +2776,39 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
       <div class="con-body">In enterprise SOCs, SIEM alerts automatically create tickets (this is called SOAR — Security Orchestration, Automation, and Response). In your lab, you manually create the Spiceworks ticket when a Splunk alert fires, then paste the Splunk search results and screenshots as internal notes inside the ticket. This documents the full investigation chain from detection through resolution in one place — exactly what auditors, managers, and legal teams need to review.</div>
     </div>
   </div>
+
+  <div class="box l5" style="margin-top:4px">
+    <div class="box-lbl">Official Spiceworks Documentation Basis</div>
+    <p>This ticketing section is based on Spiceworks Cloud Help Desk as the current browser-based Spiceworks help desk product, plus the official Spiceworks Help Center for product support requests. The lab workflow uses standard help desk concepts inside Spiceworks: tickets, categories, priorities, assignments, comments/internal notes, user communication, and closure documentation. The SOC severity model and Splunk-to-ticket process are lab-specific operational procedures built on those ticketing features. References: <a href="https://www.spiceworks.com/free-help-desk-software/" target="_blank" style="color:var(--l5)">Spiceworks Help Desk</a> | <a href="https://spicey.atlassian.net/servicedesk/customer/portals" target="_blank" style="color:var(--l5)">Spiceworks Help Center</a> | <a href="https://community.spiceworks.com/" target="_blank" style="color:var(--l5)">Spiceworks Community</a>.</p>
+  </div>
+
+  <div class="box l5" style="margin-top:4px">
+    <div class="box-lbl">Deeper YouTube Learning — Spiceworks Cloud</div>
+    <p>Spiceworks Cloud changes over time, so use current videos for screen-by-screen navigation and use the official docs/community for final confirmation. Focus on ticket creation, user portal intake, assignment, priorities, categories, notes, and closure.</p>
+  </div>
+
+  <table class="tbl">
+    <thead>
+      <tr>
+        <th>VIDEO RESOURCE</th>
+        <th>WHY WATCH IT</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Spiceworks+Cloud+Help+Desk+tutorial" target="_blank" style="color:var(--l5)">Spiceworks Cloud Help Desk tutorials</a></td>
+        <td>Use this for current walkthroughs of the Cloud Help Desk UI, ticket queue, ticket creation, assignment, and closure workflow.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=Spiceworks+Help+Desk+User+Portal+tickets" target="_blank" style="color:var(--l5)">Spiceworks user portal and ticket intake videos</a></td>
+        <td>Use this to understand the user-facing side of the help desk: how requests enter the queue and how users follow up.</td>
+      </tr>
+      <tr>
+        <td><a href="https://www.youtube.com/results?search_query=help+desk+ticket+lifecycle+priority+SLA+IT+support" target="_blank" style="color:var(--l5)">Help desk ticket lifecycle, priority, and SLA videos</a></td>
+        <td>Use this to deepen the operational side: triage, priority setting, SLA ownership, internal notes, escalation, and resolution statements.</td>
+      </tr>
+    </tbody>
+  </table>
 
   <div class="box ok" style="margin-top:4px">
     <div class="box-lbl">Setup Instructions — Takes 5 Minutes</div>
