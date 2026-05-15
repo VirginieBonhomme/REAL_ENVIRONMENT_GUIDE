@@ -448,23 +448,23 @@ body.nav-collapsed .nav-toggle{left:12px}
   <div class="concepts">
     <div class="concept c1">
       <div class="con-title">WHAT IS AN IP ADDRESS?</div>
-      <div class="con-body">An IP address is a unique numerical label assigned to every device on a network, like a postal address for data. Your lab uses <strong>192.168.10.x</strong> addresses — a private address range that only exists inside your lab. The internet has no idea these addresses exist and cannot route traffic to them directly. This is by design and is a foundational security property of your lab.</div>
+      <div class="con-body">An IP address is a unique numerical label assigned to every device on a network, like a postal address for data. The lab uses <strong>192.168.10.x</strong> addresses — a private address range that only exists inside the lab. The internet has no idea these addresses exist and cannot route traffic to them directly. This is by design and is a foundational security property of the lab.</div>
     </div>
     <div class="concept c1">
       <div class="con-title">WHAT IS A SUBNET (192.168.10.0/24)?</div>
-      <div class="con-body">A subnet defines a group of IP addresses that belong to the same network. The <strong>/24</strong> means the first 24 bits are fixed (192.168.10) and the last 8 bits are variable (.0 through .255), giving you 254 usable addresses. Every VM in your lab sits in this subnet, which means they can talk directly to each other without going through a router. Think of /24 as "everyone in the same building."</div>
+      <div class="con-body">A subnet defines a group of IP addresses that belong to the same network. The <strong>/24</strong> means the first 24 bits are fixed (192.168.10) and the last 8 bits are variable (.0 through .255), giving you 254 usable addresses. Every VM in the lab sits in this subnet, which means they can talk directly to each other without going through a router. Think of /24 as "everyone in the same building."</div>
     </div>
     <div class="concept c2">
       <div class="con-title">WHAT IS A NAT NETWORK (VIRTUALBOX)?</div>
-      <div class="con-body">NAT stands for Network Address Translation. In VirtualBox, a NAT Network allows all your VMs to share a single internet connection through the host machine (your HP Envy) AND communicate with each other. Your HP Envy acts as the router — it translates traffic between the VM's private 192.168.10.x addresses and your real internet IP. <strong>Security implication:</strong> VMs can reach the internet for downloads, and Kali can attack your Windows VMs — this is intentional for a red/blue lab.</div>
+      <div class="con-body">NAT stands for Network Address Translation. In VirtualBox, a NAT Network allows all the VMs to share a single internet connection through the host machine (the HP ENVY x360) AND communicate with each other. The HP ENVY x360 acts as the router — it translates traffic between the VM's private 192.168.10.x addresses and the real internet IP. <strong>Security implication:</strong> VMs can reach the internet for downloads, and Kali can attack the Windows VMs — this is intentional for a red/blue lab.</div>
     </div>
     <div class="concept c2">
       <div class="con-title">NAT NETWORK vs HOST-ONLY vs BRIDGED</div>
-      <div class="con-body"><strong>NAT Network:</strong> VMs reach internet + each other. Your choice — correct for this lab because Kali needs to attack other VMs. <strong>Host-Only:</strong> VMs talk to each other and your laptop only — no internet. Better isolation but Kali cannot pull tools. <strong>Bridged:</strong> VM appears directly on your home Wi-Fi — NEVER USE THIS. It exposes your vulnerable VMs to every device on your home network and potentially the internet.</div>
+      <div class="con-body"><strong>NAT Network:</strong> VMs reach internet + each other. Correct for this lab because Kali needs to attack other VMs. <strong>Host-Only:</strong> VMs talk to each other and the laptop only — no internet. Better isolation but Kali cannot pull tools. <strong>Bridged:</strong> VM appears directly on the home Wi-Fi — NEVER USE THIS. It exposes your vulnerable VMs to every device on the home network and potentially the internet.</div>
     </div>
     <div class="concept c1">
       <div class="con-title">WHAT IS DHCP?</div>
-      <div class="con-body">DHCP stands for <strong>Dynamic Host Configuration Protocol</strong>. It automatically gives a device its network settings when it joins the network, instead of you typing them in manually. DHCP usually assigns the IP address, subnet mask, default gateway, and DNS server. In this lab, <strong>Target-PC</strong> can use DHCP because it is just a workstation target. Splunk and Kali use static IPs because your searches and detections need to find them at the same address every time.</div>
+      <div class="con-body">DHCP stands for <strong>Dynamic Host Configuration Protocol</strong>. It automatically gives a device its network settings when it joins the network, instead of you typing them in manually. DHCP usually assigns the IP address, subnet mask, default gateway, and DNS server. In this lab, <strong>Target-PC</strong> can use DHCP because it is just a workstation target. Splunk and Kali use static IPs because the searches and detections need to find them at the same address every time.</div>
     </div>
     <div class="concept c3">
       <div class="con-title">WHAT IS A DOMAIN CONTROLLER?</div>
@@ -476,7 +476,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="concept c4">
       <div class="con-title">WHAT IS KERBEROS AUTHENTICATION?</div>
-      <div class="con-body">Kerberos is the authentication protocol used by Active Directory. When you log in, the DC issues a Ticket-Granting Ticket (TGT) — a cryptographic token proving your identity. You then use the TGT to request service tickets for specific resources without re-entering your password. <strong>Why attackers target it:</strong> Stolen TGTs can impersonate users (Pass-the-Ticket). Compromised krbtgt account credentials allow forged tickets valid for any user (Golden Ticket attack).</div>
+      <div class="con-body">Kerberos is the authentication protocol used by Active Directory. When you log in, the DC issues a Ticket-Granting Ticket (TGT) — a cryptographic token proving the identity. You then use the TGT to request service tickets for specific resources without re-entering your password. <strong>Why attackers target it:</strong> Stolen TGTs can impersonate users (Pass-the-Ticket). Compromised krbtgt account credentials allow forged tickets valid for any user (Golden Ticket attack).</div>
     </div>
     <div class="concept c4">
       <div class="con-title">WHAT IS LSASS.EXE AND WHY IS IT A TARGET?</div>
@@ -484,7 +484,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="concept co">
       <div class="con-title">WHAT IS A SIEM?</div>
-      <div class="con-body">SIEM stands for Security Information and Event Management. Splunk is your SIEM. It collects logs from every machine in your lab (via the Universal Forwarder), indexes them, and lets you search, correlate, and alert on suspicious patterns. <strong>The SIEM is the defender's central nervous system</strong> — every attack your Kali VM runs leaves traces on your endpoints, and those traces flow into Splunk where you can find and investigate them.</div>
+      <div class="con-body">SIEM stands for Security Information and Event Management. Splunk is the SIEM. It collects logs from every machine in the lab (via the Universal Forwarder), indexes them, and lets you search, correlate, and alert on suspicious patterns. <strong>The SIEM is the defender's central nervous system</strong> — every attack the Kali VM runs leaves traces on the endpoints, and those traces flow into Splunk where you can find and investigate them.</div>
     </div>
     <div class="concept co">
       <div class="con-title">WHAT IS THE SPLUNK UNIVERSAL FORWARDER?</div>
@@ -492,11 +492,11 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="concept cw">
       <div class="con-title">WHAT IS ATOMIC RED TEAM?</div>
-      <div class="con-body">Atomic Red Team is an open-source library of small, safe, isolated attack simulations maintained by Red Canary. Each "atomic test" simulates one specific MITRE ATT&CK technique on your own system. You run them on your Windows VM to generate realistic attack telemetry, then verify your Splunk detections catch it. <strong>Security aspect:</strong> Tests are designed to be reversible — each has a Cleanup command that restores the system state after testing.</div>
+      <div class="con-body">Atomic Red Team is an open-source library of small, safe, isolated attack simulations maintained by Red Canary. Each "atomic test" simulates one specific MITRE ATT&CK technique on your own system. You run them on the Windows VM to generate realistic attack telemetry, then verify the Splunk detections catch it. <strong>Security aspect:</strong> Tests are designed to be reversible — each has a Cleanup command that restores the system state after testing.</div>
     </div>
     <div class="concept cw">
       <div class="con-title">WHAT IS MITRE ATT&CK?</div>
-      <div class="con-body">MITRE ATT&CK is a globally recognized framework cataloging real attacker tactics and techniques based on observed incidents. Every technique has a T-number (e.g., T1059.001 = PowerShell execution). It organizes techniques by tactic: Reconnaissance → Initial Access → Execution → Persistence → Privilege Escalation → Defense Evasion → Credential Access → Discovery → Lateral Movement → Collection → Exfiltration → Impact. In your lab, every Kali attack maps to one or more ATT&CK techniques.</div>
+      <div class="con-body">MITRE ATT&CK is a globally recognized framework cataloging real attacker tactics and techniques based on observed incidents. Every technique has a T-number (e.g., T1059.001 = PowerShell execution). It organizes techniques by tactic: Reconnaissance → Initial Access → Execution → Persistence → Privilege Escalation → Defense Evasion → Credential Access → Discovery → Lateral Movement → Collection → Exfiltration → Impact. In the lab, every Kali attack maps to one or more ATT&CK techniques.</div>
     </div>
   </div>
 </section>
@@ -505,20 +505,20 @@ body.nav-collapsed .nav-toggle{left:12px}
 <section class="sec" id="sysmon">
   <div class="sec-eye">DEEP DIVE — READ THIS CAREFULLY</div>
   <h2 style="color:#fff;margin-bottom:6px">SYSMON <span style="color:var(--l1)">FULLY EXPLAINED</span></h2>
-  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">Sysmon is the most important tool in your detection stack. Understanding exactly what it captures and why is essential before you build any detection rules.</p>
+  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">Sysmon is the most important tool in the detection stack. Understanding exactly what it captures and why is essential before building any detection rules.</p>
 
   <div class="concepts" style="grid-template-columns:1fr">
     <div class="concept c1">
       <div class="con-title">WHAT SYSMON IS — AND WHAT IT IS NOT</div>
       <div class="con-body"><strong>What it is:</strong> Sysmon (System Monitor) is a Windows system service and kernel-mode driver from Microsoft's Sysinternals suite — the same team that makes Process Explorer and Autoruns. It installs on a Windows machine and runs permanently in the background, even across reboots, writing detailed security events to a dedicated Windows Event Log channel: <em>Applications and Services Logs → Microsoft → Windows → Sysmon → Operational</em>.<br><br>
-      <strong>What it is not:</strong> Sysmon does not analyze events, generate alerts, or block anything. It is purely a telemetry generator. It produces the raw data — your Splunk SIEM interprets it. This is an important conceptual distinction: Sysmon sees everything and records it; Splunk finds the patterns that indicate threats.<br><br>
-      <strong>Why it matters over standard Windows logs:</strong> Standard Windows Security logs tell you "a process was created." Sysmon tells you which process, what arguments it was given, what its parent process was, the hash of the executable, and what network connection it made immediately afterward. That chain of information is what lets you reconstruct exactly what an attacker did.</div>
+      <strong>What it is not:</strong> Sysmon does not analyze events, generate alerts, or block anything. It is purely a telemetry generator. It produces the raw data — the Splunk SIEM interprets it. This is an important conceptual distinction: Sysmon sees everything and records it; Splunk finds the patterns that indicate threats.<br><br>
+      <strong>Why it matters over standard Windows logs:</strong> Standard Windows Security logs show only "a process was created." Sysmon captures the full picture: which process, what arguments it was given, what its parent process was, the hash of the executable, and what network connection it made immediately afterward. That chain of detail is what makes reconstructing an attack chain possible.</div>
     </div>
   </div>
 
   <div class="box info">
     <div class="box-lbl">Simple Difference — Wireshark vs Sysmon vs Splunk</div>
-    <p>Think of the same incident from three camera angles. <strong>Wireshark is the network camera.</strong> It shows the packets moving across the wire: IP addresses, ports, DNS, TCP flags, HTTP requests, TLS handshakes, and timing. <strong>Sysmon is the endpoint camera.</strong> It shows what happened inside a Windows machine: which process ran, what command line it used, what process launched it, what network connection it made, what registry key changed, and whether something touched lsass.exe. <strong>Splunk is the search room.</strong> It collects logs from many machines, lets you search them, correlate them, build timelines, and create detections.</p>
+    <p>Think of the same incident from three camera angles. <strong>Wireshark is the network camera.</strong> It shows the packets moving across the wire: IP addresses, ports, DNS, TCP flags, HTTP requests, TLS handshakes, and timing. <strong>Sysmon is the endpoint camera.</strong> It shows what happened inside a Windows machine: which process ran, what command line it used, what process launched it, what network connection it made, what registry key changed, and whether something touched lsass.exe. <strong>Splunk is the search room.</strong> It collects logs from many machines, enabling search, correlation, timeline building, and detection creation.</p>
   </div>
 
   <table class="tbl">
@@ -560,7 +560,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="box info">
     <div class="box-lbl">Reference Videos — Sysmon</div>
-    <p>Optional reference videos: use these after you understand the Event ID table. Focus on what Sysmon records, how configuration files control event volume, and how analysts convert raw Sysmon events into SIEM detections.</p>
+    <p>Optional reference videos: use these after reviewing the Event ID table. Focus on what Sysmon records, how configuration files control event volume, and how analysts convert raw Sysmon events into SIEM detections.</p>
   </div>
 
   <table class="tbl">
@@ -611,21 +611,21 @@ body.nav-collapsed .nav-toggle{left:12px}
         <td><span class="eid high">EID 3</span></td>
         <td style="color:var(--text);font-weight:600">Network Connection</td>
         <td>Every outbound TCP/UDP connection: source and destination IP and port, the process that made the connection, and whether DNS was used.</td>
-        <td>Catches Command and Control (C2) communication — malware calling home to an attacker server. Also reveals port scans: when Kali runs Nmap against your Windows box, hundreds of EID 3 events fire from the target's perspective showing all the connection attempts. Correlate with EID 1 to find which process made suspicious connections.</td>
+        <td>Catches Command and Control (C2) communication — malware calling home to an attacker server. Also reveals port scans: when Kali runs Nmap against the Windows target, hundreds of EID 3 events fire from the target's perspective showing all the connection attempts. Correlate with EID 1 to find which process made suspicious connections.</td>
         <td><span class="attack-tag">T1046 Network Scanning</span><span class="attack-tag">T1071 C2 Communication</span></td>
       </tr>
       <tr>
         <td><span class="eid low">EID 4</span></td>
         <td style="color:var(--text)">Sysmon Service State Change</td>
         <td>When the Sysmon service starts or stops.</td>
-        <td>An attacker who gains admin access may try to stop Sysmon to blind your detection. An unexpected EID 4 stop event — especially one not preceded by a maintenance window — is a high-priority alert. Also tells you if Sysmon crashed.</td>
+        <td>An attacker who gains admin access may try to stop Sysmon to blind the detection. An unexpected EID 4 stop event — especially one not preceded by a maintenance window — is a high-priority alert. Also indicates whether Sysmon crashed.</td>
         <td><span class="attack-tag">T1562 Impair Defenses</span></td>
       </tr>
       <tr>
         <td><span class="eid med">EID 5</span></td>
         <td style="color:var(--text)">Process Terminated</td>
         <td>When a process exits: timestamp, process ID, and GUID.</td>
-        <td>Combined with EID 1, gives you the full lifecycle of a process — when it started and when it ended. Useful for determining how long a suspicious process ran. Very short-lived processes (started and stopped in seconds) are common in attack chains where a tool executes and exits immediately.</td>
+        <td>Combined with EID 1, provides the full lifecycle of a process — when it started and when it ended. Useful for determining how long a suspicious process ran. Very short-lived processes (started and stopped in seconds) are common in attack chains where a tool executes and exits immediately.</td>
         <td><span class="attack-tag">T1059 Short-lived execution</span></td>
       </tr>
       <tr>
@@ -641,6 +641,13 @@ body.nav-collapsed .nav-toggle{left:12px}
         <td>When a DLL or executable image loads into a process: the DLL path, hash, and signature status. <em>Disabled by default — generates very high volume.</em></td>
         <td>Used to detect DLL hijacking and side-loading — attack techniques where malicious code is placed in a DLL that a legitimate application loads. Also catches certain process injection techniques. Because this event is very noisy, it should only be enabled with a tight configuration file that filters to specific high-risk DLLs or processes.</td>
         <td><span class="attack-tag">T1574 Hijack Execution Flow</span></td>
+      </tr>
+      <tr>
+        <td><span class="eid high">EID 8</span></td>
+        <td style="color:var(--text);font-weight:600">CreateRemoteThread</td>
+        <td>When a process creates a thread in another process — the technique used by most process injection attacks. Captures: source process, target process, start address of the new thread, and the calling thread's start address.</td>
+        <td>The primary detection for process injection. Tools like Mimikatz, Cobalt Strike, and Meterpreter inject code into legitimate Windows processes (svchost.exe, explorer.exe, notepad.exe) to hide malicious activity and evade endpoint protection. When a non-privileged process creates a remote thread in a sensitive system process, it almost always indicates injection. Key filter: flag any process injecting into lsass.exe, svchost.exe from an unusual parent, or system processes from user-writable directories.</td>
+        <td><span class="attack-tag">T1055 Process Injection</span><span class="attack-tag">T1003 Credential Dumping</span></td>
       </tr>
       <tr>
         <td><span class="eid high">EID 10</span></td>
@@ -681,7 +688,7 @@ body.nav-collapsed .nav-toggle{left:12px}
         <td><span class="eid med">EID 22</span></td>
         <td style="color:var(--text);font-weight:600">DNS Query</td>
         <td>Every DNS query made by any process: the queried domain name, the process that made the query, and whether it succeeded.</td>
-        <td>Catches C2 domain lookups — malware must resolve the attacker's domain before connecting. Also detects DNS tunneling (data exfiltration encoded in DNS queries) and beaconing behavior (regular periodic DNS queries to the same unusual domain). In your lab, when Kali runs Hydra or Metasploit, any DNS resolution for attacker infrastructure shows up here.</td>
+        <td>Catches C2 domain lookups — malware must resolve the attacker's domain before connecting. Also detects DNS tunneling (data exfiltration encoded in DNS queries) and beaconing behavior (regular periodic DNS queries to the same unusual domain). In the lab, when Kali runs Hydra or Metasploit, any DNS resolution for attacker infrastructure shows up here.</td>
         <td><span class="attack-tag">T1071.004 DNS C2</span><span class="attack-tag">T1048 Exfil via DNS</span></td>
       </tr>
     </tbody>
@@ -689,7 +696,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="box info" style="margin-top:16px">
     <div class="box-lbl">WHERE SYSMON LOGS ARE STORED</div>
-    <p>Sysmon writes to: <strong>Event Viewer → Applications and Services Logs → Microsoft → Windows → Sysmon → Operational</strong>. The Splunk Universal Forwarder monitors this path and ships events to your SIEM index. You can also read them directly with PowerShell: <code style="color:var(--l1);background:rgba(0,180,216,.08);padding:1px 5px;font-size:16.5px">Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" -MaxEvents 20</code></p>
+    <p>Sysmon writes to: <strong>Event Viewer → Applications and Services Logs → Microsoft → Windows → Sysmon → Operational</strong>. The Splunk Universal Forwarder monitors this path and ships events to the SIEM index. They can also be read directly with PowerShell: <code style="color:var(--l1);background:rgba(0,180,216,.08);padding:1px 5px;font-size:16.5px">Get-WinEvent -LogName "Microsoft-Windows-Sysmon/Operational" -MaxEvents 20</code></p>
   </div>
   <div class="box warn" style="margin-top:8px">
     <div class="box-lbl">SYSMON FUTURE — TRACK MICROSOFT UPDATES</div>
@@ -704,37 +711,67 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="code" style="border-left-color:var(--l1)"><pre>
 <span class="cl cm">╔══════════════════════════════════════════════════════════════════════╗</span>
-<span class="cl cm">║  REDBLUE DOMAIN — VirtualBox NAT Network — 192.168.10.0/24           ║</span>
+<span class="cl cm">║  REDBLUE DOMAIN — FULL NETWORK FLOW — 192.168.10.0/24                ║</span>
 <span class="cl cm">╚══════════════════════════════════════════════════════════════════════╝</span>
 <span class="cl ce"> </span>
+<span class="cl cm">                         ☁ CLOUD / INTERNET ☁</span>
+<span class="cl cm">                                  │</span>
+<span class="cl cm">                                  │ downloads, updates, websites</span>
+<span class="cl cm">                                  ▼</span>
+<span class="cl cp">                    HOME ROUTER / WIFI GATEWAY</span>
+<span class="cl cm">                    (the normal home network)</span>
+<span class="cl cm">                                  │</span>
+<span class="cl cm">                                  ▼</span>
 <span class="cl cp">HP ENVY x360 Host (Windows 11) — i5-8250U — 16 GB RAM</span>
-<span class="cl cm">│  Acts as the NAT router — translates between 192.168.10.x and internet</span>
+<span class="cl cm">│  Runs VirtualBox and connects the lab to the outside world</span>
+<span class="cl cm">│  VirtualBox NAT acts like the lab router/firewall</span>
+<span class="cl cm">│  NAT translates private lab IPs (192.168.10.x) to the host connection</span>
 <span class="cl cm">│</span>
-<span class="cl cm">└── VirtualBox NAT Network (192.168.10.0/24)</span>
+<span class="cl cm">└── VirtualBox NAT Router / Gateway</span>
+<span class="cl cm">    │  Gives the lab internet access while keeping 192.168.10.x private</span>
 <span class="cl cm">    │</span>
-<span class="cl cd">    ├── 192.168.10.10   Splunk (Ubuntu Server 22.04)</span>
-<span class="cl cm">    │   ├── Splunk Enterprise 9.x — SIEM / Log Aggregator</span>
-<span class="cl cm">    │   ├── UFW Firewall: ports 22, 8000, 9997 restricted to 192.168.10.0/24</span>
-<span class="cl cm">    │   ├── Receives: Sysmon logs + Windows Event Logs via Forwarder</span>
-<span class="cl cm">    │   └── Access: http://192.168.10.10:8000 from HP Envy browser</span>
-<span class="cl cm">    │</span>
-<span class="cl cp">    ├── 192.168.10.7    ADDC01 (Windows Server 2022)</span>
-<span class="cl cm">    │   ├── Domain Controller for: redblue (redblue.local)</span>
-<span class="cl cm">    │   ├── DNS Server: resolves redblue.local → 192.168.10.7</span>
-<span class="cl cm">    │   ├── Active Directory Domain Services (AD DS)</span>
-<span class="cl cm">    │   ├── Splunk Universal Forwarder → 192.168.10.10:9997</span>
-<span class="cl cm">    │   └── Sysmon → Operational log → shipped to Splunk</span>
-<span class="cl cm">    │</span>
-<span class="cl cy">    ├── 192.168.10.x    Target-PC / Windows 10 (DHCP)</span>
-<span class="cl cm">    │   ├── Domain-joined workstation: redblue\[username]</span>
-<span class="cl cm">    │   ├── Splunk Universal Forwarder → 192.168.10.10:9997</span>
-<span class="cl cm">    │   ├── Sysmon — enriched endpoint telemetry</span>
-<span class="cl cm">    │   └── Atomic Red Team — controlled attack simulations</span>
-<span class="cl cm">    │</span>
-<span class="cl cd" style="color:var(--l4)">    └── 192.168.10.250  kali-linux (Kali Linux 2.x)</span>
-<span class="cl cm">        ├── Attacker VM — offensive tools</span>
-<span class="cl cm">        ├── Nmap, Metasploit, Hydra, CrackMapExec, Gobuster</span>
-<span class="cl cm">        └── Static IP — fixed so Splunk filters can target it precisely</span></pre>
+<span class="cl cm">    └── VirtualBox Virtual Switch — NAT Network: 192.168.10.0/24</span>
+<span class="cl cm">        │  All lab VMs plug into this same virtual switch</span>
+<span class="cl cm">        │  Because they are on the same subnet, they can talk to each other</span>
+<span class="cl cm">        │</span>
+<span class="cl cd">        ├── 192.168.10.10   Splunk (Ubuntu Server 22.04)</span>
+<span class="cl cm">        │   ├── Splunk Enterprise 9.x — SIEM / Log Aggregator</span>
+<span class="cl cm">        │   ├── UFW Firewall: ports 22, 8000, 9997 restricted to 192.168.10.0/24</span>
+<span class="cl cm">        │   ├── Receives: Sysmon logs + Windows Event Logs via Forwarder</span>
+<span class="cl cm">        │   └── Access: http://192.168.10.10:8000 from HP Envy browser</span>
+<span class="cl cm">        │</span>
+<span class="cl cp">        ├── 192.168.10.7    ADDC01 (Windows Server 2022)</span>
+<span class="cl cm">        │   ├── Domain Controller for: redblue (redblue.local)</span>
+<span class="cl cm">        │   ├── DNS Server: resolves redblue.local → 192.168.10.7</span>
+<span class="cl cm">        │   ├── Active Directory Domain Services (AD DS)</span>
+<span class="cl cm">        │   ├── Splunk Universal Forwarder → 192.168.10.10:9997</span>
+<span class="cl cm">        │   └── Sysmon → Operational log → shipped to Splunk</span>
+<span class="cl cm">        │</span>
+<span class="cl cy">        ├── 192.168.10.x    Target-PC / Windows 10 (DHCP)</span>
+<span class="cl cm">        │   ├── Domain-joined workstation: redblue\[username]</span>
+<span class="cl cm">        │   ├── Splunk Universal Forwarder → 192.168.10.10:9997</span>
+<span class="cl cm">        │   ├── Sysmon — enriched endpoint telemetry</span>
+<span class="cl cm">        │   └── Atomic Red Team — controlled attack simulations</span>
+<span class="cl cm">        │</span>
+<span class="cl cd" style="color:var(--l4)">        └── 192.168.10.250  kali-linux (Kali Linux 2024.x+)</span>
+<span class="cl cm">            ├── Attacker VM — offensive tools</span>
+<span class="cl cm">            ├── Nmap, Metasploit, Hydra, NetExec (nxc), Gobuster</span>
+<span class="cl cm">            └── Static IP — fixed so Splunk filters can target it precisely</span></pre>
+  </div>
+
+  <div class="box info" style="margin-top:14px">
+    <div class="box-lbl">How Traffic Flows Through This Network</div>
+    <p><strong>Inside the lab:</strong> Kali, Target-PC, ADDC01, and Splunk all plug into the same VirtualBox virtual switch on the 192.168.10.0/24 subnet. That is why Kali can scan Target-PC, Target-PC can talk to ADDC01 for domain login and DNS, and both Windows machines can send logs to Splunk at 192.168.10.10.</p>
+  </div>
+
+  <div class="box info" style="margin-top:8px">
+    <div class="box-lbl">How Internet Access Works</div>
+    <p><strong>Going out to the internet:</strong> a VM sends traffic to the VirtualBox NAT gateway, VirtualBox passes it through the HP ENVY x360 host, the home router sends it to the internet cloud, and the response comes back the same way. The internet does not directly see 192.168.10.x addresses because they are private lab addresses hidden behind NAT.</p>
+  </div>
+
+  <div class="box ok" style="margin-top:8px">
+    <div class="box-lbl">Server and Computer Roles in the Flow</div>
+    <p><strong>ADDC01</strong> is the identity server: it handles domain logins, Active Directory, and DNS for redblue.local. <strong>Splunk</strong> is the logging server: it receives Sysmon and Windows logs from the Windows machines. <strong>Target-PC</strong> is the workstation: it joins the domain and generates endpoint activity. <strong>Kali</strong> is the attacker machine: it creates scan and attack traffic for detection practice.</p>
   </div>
 
   <h3 style="font-family:'IBM Plex Mono',monospace;font-size:13.5px;letter-spacing:3px;color:var(--muted);margin:18px 0 10px;text-transform:uppercase">VM INVENTORY — YOUR VIRTUALBOX AS SEEN IN THE SCREENSHOTS</h3>
@@ -744,11 +781,16 @@ body.nav-collapsed .nav-toggle{left:12px}
       <tr><td class="hi1">Splunk</td><td>Ubuntu Server 22.04</td><td class="hi1">192.168.10.10</td><td>SIEM — log aggregation and alerting</td><td>4 GB</td><td class="good">Running</td></tr>
       <tr><td class="hi2">ADDC01</td><td>Windows Server 2022</td><td class="hi2">192.168.10.7</td><td>Domain Controller — redblue domain</td><td>4 GB</td><td style="color:var(--warn)">Saved</td></tr>
       <tr><td style="color:var(--text);font-family:'IBM Plex Mono',monospace;font-size:16.5px">Target-PC</td><td>Windows 10</td><td style="color:var(--muted)">DHCP assigned</td><td>Domain workstation — endpoint target</td><td>4 GB</td><td style="color:var(--warn)">Saved</td></tr>
-      <tr><td class="hi4">kali-linux-2.x</td><td>Kali Linux 2.x</td><td class="hi4">192.168.10.250</td><td>Attacker VM — red team exercises</td><td>2–4 GB</td><td class="good">Running</td></tr>
+      <tr><td class="hi4">kali-linux</td><td>Kali Linux 2024.x+</td><td class="hi4">192.168.10.250</td><td>Attacker VM — red team exercises</td><td>2–4 GB</td><td class="good">Running</td></tr>
     </tbody>
   </table>
 
-  <div class="box info" style="margin-top:12px">
+  <div class="box warn" style="margin-top:12px">
+    <div class="box-lbl">WINDOWS 10 END OF SUPPORT — IMPORTANT FOR NEW BUILDS</div>
+    <p>Windows 10 reached End of Support on <strong>October 14, 2025</strong> — Microsoft no longer issues security patches for it. For lab builds in 2026 or later, use <strong>Windows 11</strong> as the Target-PC instead. The lab procedures are identical. An existing Windows 10 VM built and running isolated in VirtualBox with no internet exposure remains suitable for offline lab exercises but should not be considered a current production-representative environment.</p>
+  </div>
+
+  <div class="box info" style="margin-top:8px">
     <div class="box-lbl">DHCP in This Inventory</div>
     <p><strong>DHCP assigned</strong> means VirtualBox automatically gives Target-PC an available 192.168.10.x address when it joins the lab network. Splunk stays static at 192.168.10.10 because every forwarder sends logs there. Kali stays static at 192.168.10.250 so Splunk searches can reliably identify attacker traffic.</p>
   </div>
@@ -767,11 +809,11 @@ body.nav-collapsed .nav-toggle{left:12px}
   <div class="concepts">
     <div class="concept cd">
       <div class="con-title">ABSOLUTE RULE — KALI SCOPE</div>
-      <div class="con-body">Every Kali attack tool — Nmap, Hydra, Metasploit, CrackMapExec — must only target <strong>192.168.10.0/24 addresses</strong>. Before every Kali session, run <code style="color:var(--l4);background:rgba(255,68,68,.1);padding:1px 4px;font-size:15px">ip a</code> and verify your IP is 192.168.10.250. Running these tools against any external IP is illegal under the Computer Fraud and Abuse Act regardless of intent. Document every attack with the exact command and timestamp.</div>
+      <div class="con-body">Every Kali attack tool — Nmap, Hydra, Metasploit, NetExec (nxc) — must only target <strong>192.168.10.0/24 addresses</strong>. Before every Kali session, run <code style="color:var(--l4);background:rgba(255,68,68,.1);padding:1px 4px;font-size:15px">ip a</code> and verify your IP is 192.168.10.250. Running these tools against any external IP is illegal under the Computer Fraud and Abuse Act regardless of intent. Document every attack with the exact command and timestamp.</div>
     </div>
     <div class="concept cd">
       <div class="con-title">NEVER USE BRIDGED ADAPTER</div>
-      <div class="con-body">A Bridged Adapter makes your VM appear directly on your home Wi-Fi network — reachable from every phone, smart TV, and other device in your home. If your Windows VM has vulnerabilities (it does — that's the point), a Bridged adapter exposes them to everything on your network. <strong>All VMs use NAT Network only.</strong> If you ever see a Bridged adapter in VirtualBox settings for a lab VM, change it immediately.</div>
+      <div class="con-body">A Bridged Adapter makes the VM appear directly on the home Wi-Fi network — reachable from every phone, smart TV, and other device in your home. If the Windows VM has vulnerabilities (it does — that's the point), a Bridged adapter exposes them to everything on the network. <strong>All VMs use NAT Network only.</strong> If you ever see a Bridged adapter in VirtualBox settings for a lab VM, change it immediately.</div>
     </div>
     <div class="concept co">
       <div class="con-title">SNAPSHOTS ARE MANDATORY</div>
@@ -791,7 +833,7 @@ body.nav-collapsed .nav-toggle{left:12px}
   <div class="lbanner lb1" data-n="01">
     <div class="lb-eye">LAB_01 · SIEM DEPLOYMENT + ENDPOINT TELEMETRY</div>
     <div class="lb-title">Deploy SIEM — Enrich with Sysmon — Detect Real Attacks</div>
-    <div class="lb-sub">Your Splunk VM is running at 192.168.10.10. This lab adds Sysmon telemetry, builds detection rules, and runs SOC analyst challenges against your real redblue environment.</div>
+    <div class="lb-sub">The Splunk VM is running at 192.168.10.10. This lab adds Sysmon telemetry, builds detection rules, and runs SOC analyst challenges against the real redblue environment.</div>
     <div class="lb-meta">
       <div class="lb-m">SPLUNK IP<span>192.168.10.10</span></div>
       <div class="lb-m">DOMAIN<span>redblue</span></div>
@@ -800,8 +842,8 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
   </div>
   <div class="box warn">
-    <div class="box-lbl">Splunk License Facts — Verified from Official Documentation (splunk.com)</div>
-    <p><strong>60-day Enterprise Trial:</strong> Full features — alerting, authentication, forwarding, dashboards, saved searches. <strong>After 60 days (Splunk Free):</strong> 500 MB/day indexing limit (sufficient for 2–3 endpoints), alerting completely disabled, authentication removed (anyone reaching port 8000 auto-logs in as admin). <strong>Strategy:</strong> Build and test every detection rule during the trial window. After expiry, run searches manually — they still work.</p>
+    <div class="box-lbl">Splunk License Facts — Verify Current Terms at splunk.com</div>
+    <p><strong>Note:</strong> Cisco acquired Splunk in March 2024, and licensing options have evolved since then. Always verify the current trial and free-tier terms at splunk.com before starting. <strong>Historically</strong> (and still applicable for most home lab installations): the Enterprise Trial gives full features — alerting, authentication, forwarding, dashboards, saved searches — for a limited window (typically 60 days). After trial expiry, the free tier imposes a 500 MB/day indexing limit (sufficient for 2–3 endpoints), alerting is disabled, and authentication is removed (anyone reaching port 8000 auto-logs in as admin). <strong>Strategy:</strong> Build and test every detection rule during the trial window. After expiry, run searches manually — they still work. If current terms differ from this description, adjust accordingly.</p>
   </div>
 
   <div class="box info">
@@ -816,7 +858,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="box info">
     <div class="box-lbl">Reference Videos — Splunk SIEM</div>
-    <p>Optional reference videos: use these after you understand the lab searches. Focus on how Splunk structures events, how SPL pipes transform results, and how security analysts turn searches into detections and dashboards.</p>
+    <p>Optional reference videos: use these after reviewing the lab searches. Focus on how Splunk structures events, how SPL pipes transform results, and how security analysts turn searches into detections and dashboards.</p>
   </div>
 
   <table class="tbl">
@@ -837,7 +879,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       </tr>
       <tr>
         <td><a href="https://www.youtube.com/@splunkofficial/search?query=security%20essentials%20SIEM" target="_blank" style="color:var(--l1)">Splunk official channel — security use cases</a></td>
-        <td>Use this to connect your lab detections to real SOC use cases, SIEM workflows, and security content.</td>
+        <td>Use this to connect the lab detections to real SOC use cases, SIEM workflows, and security content.</td>
       </tr>
     </tbody>
   </table>
@@ -990,7 +1032,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-time">20 MIN</div><div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">Sysmon installs as a Windows service and kernel-mode driver. It persists across reboots and runs before any user logs in. Install it on both Windows endpoints with the same configuration file so your Splunk detection rules work consistently across both machines.</p>
+      <p class="step-exp">Sysmon installs as a Windows service and kernel-mode driver. It persists across reboots and runs before any user logs in. Install it on both Windows endpoints with the same configuration file so the Splunk detection rules work consistently across both machines.</p>
       <div class="code"><pre>
 <span class="cl cm"># Download Sysmon from Microsoft Sysinternals:</span>
 <span class="cl cm"># learn.microsoft.com/en-us/sysinternals/downloads/sysmon</span>
@@ -1054,7 +1096,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-time">30 MIN</div><div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">These five searches detect real attack techniques using Sysmon's enriched telemetry. Each one corresponds to a MITRE ATT&CK technique that your Kali VM will exercise in Lab 04. Build them now during the Enterprise Trial window so alerting works. After 60 days, run them manually.</p>
+      <p class="step-exp">These five searches detect real attack techniques using Sysmon's enriched telemetry. Each one corresponds to a MITRE ATT&CK technique that the Kali VM will exercise in Lab 04. Build them now during the Enterprise Trial window so alerting works. After 60 days, run them manually.</p>
       <div class="code"><pre>
 <span class="cl cm"># RULE 1 — PowerShell Download Cradle (T1059.001)</span>
 <span class="cl cm"># Attackers use PowerShell to download and execute code in memory</span>
@@ -1101,10 +1143,10 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-time">25 MIN</div><div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">Atomic Red Team closes the loop between attack and detection. You run a controlled simulation of a real technique, then immediately check Splunk to confirm your detection rule caught it. This validates your entire pipeline: endpoint → Sysmon → Forwarder → Splunk → detection rule.</p>
+      <p class="step-exp">Atomic Red Team closes the loop between attack and detection. You run a controlled simulation of a real technique, then immediately check Splunk to confirm the detection rule caught it. This validates your entire pipeline: endpoint → Sysmon → Forwarder → Splunk → detection rule.</p>
       <div class="code"><pre>
 <span class="cl cm"># On Windows 10 VM — PowerShell as Admin</span>
-<span class="cl cm"># (Atomic Red Team should already be installed per your lab diagram)</span>
+<span class="cl cm"># (Atomic Red Team should already be installed per the lab diagram)</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># Test 1: Credential access simulation (T1003)</span>
 <span class="cl cd">Invoke-AtomicTest T1003 -TestNumbers 1</span>
@@ -1123,7 +1165,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">Invoke-AtomicTest T1547.001 -TestNumbers 1 -Cleanup</span>
 <span class="cl cd">Invoke-AtomicTest T1082 -TestNumbers 1 -Cleanup</span></pre>
       </div>
-      <div class="tip td"><span class="tip-lbl">LEGAL</span> Atomic Red Team is designed for testing YOUR OWN systems. Only run it on your lab VMs (192.168.10.x). Always run the Cleanup command after each test to restore system state.</div>
+      <div class="tip td"><span class="tip-lbl">LEGAL</span> Atomic Red Team is designed for testing YOUR OWN systems. Only run it on the lab VMs (192.168.10.x). Always run the Cleanup command after each test to restore system state.</div>
     </div>
   </div>
 </section>
@@ -1141,7 +1183,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="ch-body">
       <div class="ch-lbl">SITUATION</div>
-      <p class="ch-sit">Your Splunk port scan detection rule (DET-002) fired. Sysmon EventCode 3 shows hundreds of network connections from source IP 192.168.10.250 (your Kali VM) targeting your Windows 10 machine over a 45-second window. This is Kali running Nmap recon against your endpoint.</p>
+      <p class="ch-sit">The Splunk port scan detection rule (DET-002) fired. Sysmon EventCode 3 shows hundreds of network connections from source IP 192.168.10.250 (the Kali VM) targeting your Windows 10 machine over a 45-second window. This is Kali running Nmap recon against the endpoint.</p>
       <div class="ch-task">YOUR TASK: Investigate the Sysmon network events, identify the scan pattern, determine which ports responded, write a formal Threat Hunt Finding with specific IOC values, and recommend a detection improvement.</div>
       <div class="ch-lbl">SPLUNK SEARCHES</div>
       <div class="code"><pre>
@@ -1178,7 +1220,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="ch-body">
       <div class="ch-lbl">SITUATION</div>
-      <p class="ch-sit">You ran Atomic Red Team tests on your Windows 10 VM. Your task is to find every artifact those tests left in Splunk, identify which EventCodes fired, and write a detection gap analysis comparing what Sysmon captured vs what standard Windows Event Logs alone would have shown.</p>
+      <p class="ch-sit">You ran Atomic Red Team tests on the Windows 10 VM. Your task is to find every artifact those tests left in Splunk, identify which EventCodes fired, and write a detection gap analysis comparing what Sysmon captured vs what standard Windows Event Logs alone would have shown.</p>
       <div class="ch-task">YOUR TASK: Hunt all Sysmon artifacts from the Atomic Red Team execution window. Map each to MITRE ATT&CK. Document the detection gap — what would standard Windows logs alone have missed?</div>
       <div class="ch-lbl">SPLUNK SEARCHES</div>
       <div class="code"><pre>
@@ -1196,10 +1238,10 @@ body.nav-collapsed .nav-toggle{left:12px}
       </div>
       <div class="ch-lbl">STEPS</div>
       <ol class="ch-steps">
-        <li><p>Record the exact start and end timestamp of your Atomic Red Team test before running it</p></li>
+        <li><p>Record the exact start and end timestamp of the Atomic Red Team test before running it</p></li>
         <li><p>Run all searches scoped to that time window</p></li>
         <li><p>List every Sysmon EventCode that appeared and what each means (reference the Sysmon Explained section)</p></li>
-        <li><p>Write the MITRE ATT&CK mapping for what you observed</p></li>
+        <li><p>Write the MITRE ATT&CK mapping for the observed techniques</p></li>
         <li><p>Write the detection gap analysis: what would Windows Event Logs alone have missed?</p></li>
       </ol>
       <div class="ch-del"><div class="dl">DELIVERABLE</div><p>DETECTION ANALYSIS: Atomic Test [name] | MITRE Technique [T-number] | Sysmon Events Generated: [EventCode list] | Standard Windows Events Generated: [EventCode list] | Detection Gap: [specific events Sysmon caught that standard logs missed] | Recommendation: [detection rule to add]. Save as Lab01-AtomicRedTeam-GapAnalysis.pdf</p></div>
@@ -1337,7 +1379,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     <div class="step-body">
       <p class="step-exp">Build an OU structure that mirrors a real enterprise. Use PowerShell for all user creation — no GUI. Bulk provisioning via script is how production sysadmins work and creates a documented record of exactly what was built.</p>
       <div class="code"><pre>
-<span class="cl cm"># Set your domain base (adjust to match your Get-ADDomain output):</span>
+<span class="cl cm"># Set the domain base (adjust to match your Get-ADDomain output):</span>
 <span class="cl cd">$base = "DC=redblue,DC=local"</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># Create OU hierarchy:</span>
@@ -1355,7 +1397,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">  New-ADUser -Name $u -SamAccountName $u `</span>
 <span class="cl cd">    -UserPrincipalName "$u@redblue.local" `</span>
 <span class="cl cd">    -Path "OU=IT,OU=CORP,$base" `</span>
-<span class="cl cd">    -AccountPassword (ConvertTo-SecureString 'RedBlue@Lab2024!' -AsPlainText -Force) `</span>
+<span class="cl cd">    -AccountPassword (ConvertTo-SecureString 'RedBlue@Lab2026!' -AsPlainText -Force) `</span>
 <span class="cl cd">    -Enabled $true -ChangePasswordAtLogon $true</span>
 <span class="cl cd">}</span>
 <span class="cl ce"> </span>
@@ -1365,7 +1407,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">  New-ADUser -Name $u -SamAccountName $u `</span>
 <span class="cl cd">    -UserPrincipalName "$u@redblue.local" `</span>
 <span class="cl cd">    -Path "OU=SOC,OU=CORP,$base" `</span>
-<span class="cl cd">    -AccountPassword (ConvertTo-SecureString 'RedBlue@Lab2024!' -AsPlainText -Force) `</span>
+<span class="cl cd">    -AccountPassword (ConvertTo-SecureString 'RedBlue@Lab2026!' -AsPlainText -Force) `</span>
 <span class="cl cd">    -Enabled $true -ChangePasswordAtLogon $true</span>
 <span class="cl cd">}</span>
 <span class="cl ce"> </span>
@@ -1383,17 +1425,21 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-time">40 MIN</div><div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">Security groups enable RBAC. GPOs enforce security policy automatically across all machines in an OU. Domain-joining your Windows 10 VM ties workstation identity to the redblue domain so Splunk events include domain usernames.</p>
+      <p class="step-exp">Security groups enable RBAC. GPOs enforce security policy automatically across all machines in an OU. Domain-joining the Windows 10 VM ties workstation identity to the redblue domain so Splunk events include domain usernames.</p>
       <div class="code"><pre>
 <span class="cl cm"># Create security groups for RBAC:</span>
 <span class="cl cd">New-ADGroup -Name 'IT-Admins' -GroupScope Global -GroupCategory Security -Path "OU=CORP,$base"</span>
 <span class="cl cd">New-ADGroup -Name 'SOC-Analysts' -GroupScope Global -GroupCategory Security -Path "OU=CORP,$base"</span>
 <span class="cl cd">New-ADGroup -Name 'HR-Staff' -GroupScope Global -GroupCategory Security -Path "OU=CORP,$base"</span>
+<span class="cl cd">New-ADGroup -Name 'Finance-Users' -GroupScope Global -GroupCategory Security -Path "OU=CORP,$base"</span>
 <span class="cl cd">Add-ADGroupMember -Identity 'IT-Admins' -Members alice.johnson,bob.smith</span>
 <span class="cl cd">Add-ADGroupMember -Identity 'SOC-Analysts' -Members analyst.one,analyst.two,analyst.three</span>
+<span class="cl cm"># Finance-Users is created now so Script S2 (Mover) can remove users from it during a transfer</span>
+<span class="cl cm"># After Script S1 (bulk provisioning) runs, add Finance employees to Finance-Users:</span>
+<span class="cl cd">Add-ADGroupMember -Identity 'Finance-Users' -Members sarah.jones,nina.patel</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># GPO 1: Security-Baseline — open GPMC (gpmc.msc) on ADDC01</span>
-<span class="cl cm"># Right-click your domain → Create a GPO → Name: Security-Baseline → Edit:</span>
+<span class="cl cm"># Right-click the domain → Create a GPO → Name: Security-Baseline → Edit:</span>
 <span class="cl cd">Computer Config → Windows Settings → Security Settings → Account Lockout Policy:</span>
 <span class="cl cd">  Threshold: 5 attempts | Duration: 30 min | Reset counter: 15 min</span>
 <span class="cl cd">Computer Config → Windows Settings → Security Settings → Password Policy:</span>
@@ -1442,7 +1488,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cm"># Reason: social engineering attacks frequently impersonate locked-out users to get password resets</span>
 <span class="cl ce"> </span>
 <span class="cl cd">Unlock-ADAccount -Identity analyst.one</span>
-<span class="cl cd">Set-ADAccountPassword -Identity analyst.one -Reset -NewPassword (ConvertTo-SecureString 'TempSOC@2024!' -AsPlainText -Force)</span>
+<span class="cl cd">Set-ADAccountPassword -Identity analyst.one -Reset -NewPassword (ConvertTo-SecureString 'TempSOC@2026!' -AsPlainText -Force)</span>
 <span class="cl cd">Set-ADUser -Identity analyst.one -ChangePasswordAtLogon $true</span>
 <span class="cl cd">Get-ADUser -Identity analyst.one -Properties LockedOut | Select Name,LockedOut</span>
 <span class="cl cm"># Must show: LockedOut=False before closing ticket</span></pre>
@@ -1475,7 +1521,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">  -UserPrincipalName 'jordan.reed@redblue.local' `</span>
 <span class="cl cd">  -DisplayName 'Jordan Reed' -Department 'SOC' `</span>
 <span class="cl cd">  -Path "OU=SOC,OU=CORP,DC=redblue,DC=local" `</span>
-<span class="cl cd">  -AccountPassword (ConvertTo-SecureString 'Welcome@RedBlue2024!' -AsPlainText -Force) `</span>
+<span class="cl cd">  -AccountPassword (ConvertTo-SecureString 'Welcome@RedBlue2026!' -AsPlainText -Force) `</span>
 <span class="cl cd">  -ChangePasswordAtLogon $true -Enabled $true</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># Add ONLY to SOC-Analysts — NOT IT-Admins, NOT Domain Admins (least privilege):</span>
@@ -1565,11 +1611,11 @@ body.nav-collapsed .nav-toggle{left:12px}
 <section class="sec" id="adauto">
   <div class="sec-eye">LAB 02 ADD-ON · PORTFOLIO DIFFERENTIATOR</div>
   <h2 style="color:#fff;margin-bottom:6px">AD POWERSHELL <span style="color:var(--l2)">AUTOMATION</span></h2>
-  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">This section teaches you to write real automation scripts for Active Directory tasks. Every script is explained line by line before you run it. This is IAM-level work — exactly what Identity Analyst and IAM Engineer job descriptions require.</p>
+  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">This section covers writing real automation scripts for Active Directory tasks. Every script is explained line by line before running it. This is IAM-level work — exactly what Identity Analyst and IAM Engineer job descriptions require.</p>
 
   <div class="box info">
     <div class="box-lbl">WHY AUTOMATION MATTERS FOR IAM</div>
-    <p>Manual AD management does not scale. A company with 5,000 employees cannot create, modify, and deactivate accounts one at a time. IAM teams use PowerShell scripts to automate the Joiner-Mover-Leaver lifecycle, run scheduled access reviews, generate compliance reports, and enforce access governance policies. Every script you write here maps directly to a task in an IAM Analyst job description. This is not extra credit — it is the core of the role.</p>
+    <p>Manual AD management does not scale. A company with 5,000 employees cannot create, modify, and deactivate accounts one at a time. IAM teams use PowerShell scripts to automate the Joiner-Mover-Leaver lifecycle, run scheduled access reviews, generate compliance reports, and enforce access governance policies. Every script in this section maps directly to a task in an IAM Analyst job description. This is not extra credit — it is the core of the role.</p>
   </div>
 
   <div class="box info">
@@ -1607,7 +1653,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="box warn" style="margin-top:8px">
     <div class="box-lbl">BEFORE YOU START — EXECUTION POLICY</div>
-    <p>Windows blocks PowerShell scripts by default for security. You need to allow script execution on your ADDC01. Open PowerShell as Administrator on ADDC01 and run this once:</p>
+    <p>Windows blocks PowerShell scripts by default for security. Script execution must be enabled on ADDC01. Open PowerShell as Administrator on ADDC01 and run this once:</p>
   </div>
   <div class="code" style="margin-top:0"><pre>
 <span class="cl cm"># Check current policy:</span>
@@ -1616,7 +1662,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser</span>
 <span class="cl cm"># Type Y to confirm</span>
 <span class="cl cm"># RemoteSigned = local scripts run freely, downloaded scripts must be signed</span>
-<span class="cl cm"># This is the standard enterprise setting — not a security risk in your lab</span></pre>
+<span class="cl cm"># This is the standard enterprise setting — not a security risk in the lab</span></pre>
   </div>
 
   <div class="box ok" style="margin-top:8px">
@@ -1699,7 +1745,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">$DomainBase = "DC=redblue,DC=local"</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># LINE 2: Define the default temporary password for all new accounts</span>
-<span class="cl cd">$TempPassword = "RedBlue@Welcome2024!"</span>
+<span class="cl cd">$TempPassword = "RedBlue@Welcome2026!"</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># LINE 3: Define where to write the log file</span>
 <span class="cl cd">$LogFile = "C:\\AuditReports\\NewUsers-$(Get-Date -Format 'yyyyMMdd-HHmm').log"</span>
@@ -1771,8 +1817,8 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cm"># After it runs, verify the users were created:</span>
 <span class="cl cd">Get-ADUser -Filter * -Properties Department | Select Name, SamAccountName, Department, Enabled | Sort Department | Format-Table -AutoSize</span>
 <span class="cl ce"> </span>
-<span class="cl cm"># Review the log file:</span>
-<span class="cl cd">Get-Content "C:\\AuditReports\\NewUsers-*.log" | Select-Object -Last 1 | ForEach { Get-Content $_ }</span>
+<span class="cl cm"># Review the most recent log file:</span>
+<span class="cl cd">Get-ChildItem "C:\\AuditReports\\NewUsers-*.log" | Sort-Object LastWriteTime -Descending | Select-Object -First 1 | Get-Content</span>
 <span class="cl cm"># OR just open it: notepad C:\\AuditReports\\NewUsers-[tab to autocomplete].log</span></pre>
       </div>
       <div class="tip ti"><span class="tip-lbl">SCREENSHOT THIS</span> The terminal output showing green SUCCESS lines for all 5 users, then the Get-ADUser table showing all users with their departments. This is your Joiner automation portfolio evidence.</div>
@@ -2051,7 +2097,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">Access reviews are a core IAM function. This script identifies accounts that have not been used in 90 days, accounts with PasswordNeverExpires enabled, and accounts with excessive group memberships. These are the three most common findings in IAM audits. Run this script quarterly and document the output — it is your access governance evidence.</p>
+      <p class="step-exp">Access reviews are a core IAM function. This script identifies accounts that have not been used in 90 days, accounts with PasswordNeverExpires enabled, and accounts with excessive group memberships. These are the three most common findings in IAM audits. Run this script quarterly and document the output — it is the access governance evidence.</p>
 
       <div class="concepts" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
         <div class="concept c2">
@@ -2163,7 +2209,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">This script finds all users whose passwords expire in the next 14 days and generates a notification report. In a real enterprise this would trigger an automated email to each user. In your lab it generates a report you can use as a compliance artifact. This is a standard IAM operational task.</p>
+      <p class="step-exp">This script finds all users whose passwords expire in the next 14 days and generates a notification report. In a real enterprise this would trigger an automated email to each user. In the lab it generates a report you can use as a compliance artifact. This is a standard IAM operational task.</p>
       <p style="font-size:19.5px;color:#4a8090;line-height:1.85;margin-bottom:10px;font-style:italic">Save as <strong style="color:var(--text)">C:\\Scripts\\Get-PasswordExpiryReport.ps1</strong></p>
       <div class="code"><pre>
 <span class="cl cm"># ============================================================</span>
@@ -2213,7 +2259,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="code"><pre>
 <span class="cl cm"># Run it:</span>
 <span class="cl cd">.\\Get-PasswordExpiryReport.ps1</span>
-<span class="cl cm"># In your lab most passwords were just set so few will show. That is correct.</span>
+<span class="cl cm"># In the lab most passwords were just set so few will show. That is correct.</span>
 <span class="cl cm"># To test it: temporarily set one user's PasswordLastSet to 88 days ago:</span>
 <span class="cl cd">Set-ADUser -Identity nina.patel -Replace @{pwdLastSet=(Get-Date).AddDays(-88).ToFileTime()}</span>
 <span class="cl cm"># Now run the script again — nina.patel should appear with DaysRemaining=2</span></pre>
@@ -2238,11 +2284,11 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="concepts" style="grid-template-columns:1fr 1fr;margin-bottom:14px">
         <div class="concept c2">
           <div class="con-title">WHAT IS TASK SCHEDULER?</div>
-          <div class="con-body">Task Scheduler is a Windows service that runs programs, scripts, or commands at scheduled times or in response to system events. Think of it as an alarm clock for your scripts. In enterprise environments it is used to run backup jobs, compliance reports, monitoring scripts, and IAM access reviews automatically. You can also schedule tasks via PowerShell — which creates a documented, repeatable setup process.</div>
+          <div class="con-body">Task Scheduler is a Windows service that runs programs, scripts, or commands at scheduled times or in response to system events. Think of it as an alarm clock for the scripts. In enterprise environments it is used to run backup jobs, compliance reports, monitoring scripts, and IAM access reviews automatically. You can also schedule tasks via PowerShell — which creates a documented, repeatable setup process.</div>
         </div>
         <div class="concept c2">
           <div class="con-title">WHAT IS -RunLevel Highest?</div>
-          <div class="con-body"><code style="color:var(--l2);font-size:15px">-RunLevel Highest</code> tells Task Scheduler to run the task with Administrator-level privileges. Since AD cmdlets require admin rights, your scheduled script must run elevated. Without this, the script runs with standard user permissions and every AD operation fails with an access denied error.</div>
+          <div class="con-body"><code style="color:var(--l2);font-size:15px">-RunLevel Highest</code> tells Task Scheduler to run the task with Administrator-level privileges. Since AD cmdlets require admin rights, the scheduled script must run elevated. Without this, the script runs with standard user permissions and every AD operation fails with an access denied error.</div>
         </div>
       </div>
 
@@ -2293,7 +2339,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cm"># View all IAM-related scheduled tasks:</span>
 <span class="cl cd">Get-ScheduledTask | Where-Object {$_.TaskName -like "*IAM*" -or $_.TaskName -like "*Password*"} | Select TaskName, State</span></pre>
       </div>
-      <div class="tip ti"><span class="tip-lbl">SCREENSHOT THIS</span> Task Scheduler GUI (taskschd.msc) showing both scheduled tasks with their next run times. Also screenshot Get-ScheduledTaskInfo showing LastTaskResult=0 after a manual run. This proves your automation actually works.</div>
+      <div class="tip ti"><span class="tip-lbl">SCREENSHOT THIS</span> Task Scheduler GUI (taskschd.msc) showing both scheduled tasks with their next run times. Also screenshot Get-ScheduledTaskInfo showing LastTaskResult=0 after a manual run. This proves the automation actually works.</div>
     </div>
   </div>
 </section>
@@ -2302,7 +2348,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <section class="sec" id="adautoc" style="background:rgba(139,92,246,.015)">
   <div class="sec-eye" style="color:var(--l2)">AD AUTOMATION · CHALLENGES</div>
   <h2 style="color:#fff;margin-bottom:8px">IAM AUTOMATION <span style="color:var(--l2)">SCENARIOS</span></h2>
-  <p style="color:var(--muted);font-size:19.5px;margin-bottom:20px;font-style:italic">These challenges use your automation scripts against realistic IAM scenarios. Each one produces a deliverable that belongs in your portfolio.</p>
+  <p style="color:var(--muted);font-size:19.5px;margin-bottom:20px;font-style:italic">These challenges use the automation scripts against realistic IAM scenarios. Each one produces a deliverable that belongs in your portfolio.</p>
 
   <div class="ch ch4">
     <div class="ch-hd" onclick="togC(this)">
@@ -2317,11 +2363,11 @@ body.nav-collapsed .nav-toggle{left:12px}
       <ol class="ch-steps">
         <li><p>Run the script and screenshot the green SUCCESS output for all 5 users</p></li>
         <li><p>Run Get-ADUser for each new hire and confirm OU, Department, and Manager are set correctly</p></li>
-        <li><p>Open the log file and screenshot it — this is your audit trail</p></li>
+        <li><p>Open the log file and screenshot it — this is the audit trail</p></li>
         <li><p>Log into the Windows 10 VM as one of the new users to confirm first-login forced password change works</p></li>
         <li><p>Write a completion summary: X accounts created in Y minutes, all verified</p></li>
       </ol>
-      <div class="ch-del"><div class="dl">DELIVERABLE</div><p>BULK ONBOARDING REPORT: Script run log screenshot | Get-ADUser verification for all 5 accounts | Time from script start to completion | First-login test confirmation. Paste the log file content directly into your Spiceworks ticket for this request. Save as AutoLab-BulkOnboarding-Report.pdf</p></div>
+      <div class="ch-del"><div class="dl">DELIVERABLE</div><p>BULK ONBOARDING REPORT: Script run log screenshot | Get-ADUser verification for all 5 accounts | Time from script start to completion | First-login test confirmation. Paste the log file content directly into the Spiceworks ticket for this request. Save as AutoLab-BulkOnboarding-Report.pdf</p></div>
       <div class="ch-rw"><div class="dl">WHY THIS MATTERS FOR IAM</div><p>Bulk provisioning from HR system exports is the literal daily work of an IAM Analyst. Being able to demonstrate a scripted JML Joiner process — with a log file and verification — is exactly what an IAM hiring manager is looking for in a candidate without enterprise tool experience.</p></div>
     </div>
   </div>
@@ -2378,7 +2424,7 @@ body.nav-collapsed .nav-toggle{left:12px}
   <div class="lbanner lb3" data-n="03">
     <div class="lb-eye">LAB_03 · WIRESHARK — CAPTURE REAL KALI ATTACK TRAFFIC</div>
     <div class="lb-title">See Your Attacks on the Wire — Then Correlate with Splunk</div>
-    <div class="lb-sub">With Kali in your lab you can capture real Nmap scan packets, Hydra brute-force traffic, and Metasploit payloads — then analyze them in Wireshark and correlate with Sysmon events in Splunk. This is significantly more valuable than simulated traffic.</div>
+    <div class="lb-sub">With Kali in the lab you can capture real Nmap scan packets, Hydra brute-force traffic, and Metasploit payloads — then analyze them in Wireshark and correlate with Sysmon events in Splunk. This is significantly more valuable than simulated traffic.</div>
     <div class="lb-meta">
       <div class="lb-m">TOOL<span>Wireshark (HP Envy host)</span></div>
       <div class="lb-m">CAPTURE SOURCE<span>VirtualBox NAT Network adapter</span></div>
@@ -2401,7 +2447,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="concept c3">
       <div class="con-title">WHY DNS IS ALWAYS VISIBLE</div>
-      <div class="con-body">DNS (Domain Name System) queries are sent in cleartext before the HTTPS connection is established. This means even though HTTPS encrypts the content, an observer can see every domain name you looked up — revealing which websites you visited. This is why <strong>DNS-over-HTTPS (DoH)</strong> was created — it encrypts the DNS lookup itself. In your lab, every tool Kali runs that needs a hostname generates a DNS query visible in Wireshark filter <code style="color:var(--l3);font-size:15px">dns</code>.</div>
+      <div class="con-body">DNS (Domain Name System) queries are sent in cleartext before the HTTPS connection is established. This means even though HTTPS encrypts the content, an observer can see every domain name you looked up — revealing which websites you visited. This is why <strong>DNS-over-HTTPS (DoH)</strong> was created — it encrypts the DNS lookup itself. In the lab, every tool Kali runs that needs a hostname generates a DNS query visible in Wireshark filter <code style="color:var(--l3);font-size:15px">dns</code>.</div>
     </div>
   </div>
 
@@ -2422,7 +2468,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="box ok">
     <div class="box-lbl">Reference Videos — Wireshark</div>
-    <p>Optional reference videos: use these after you complete the baseline and Nmap captures. Focus on capture placement, display filters, TCP behavior, protocol hierarchy, conversations, and reading packet timelines.</p>
+    <p>Optional reference videos: use these after completing the baseline and Nmap captures. Focus on capture placement, display filters, TCP behavior, protocol hierarchy, conversations, and reading packet timelines.</p>
   </div>
 
   <table class="tbl">
@@ -2443,7 +2489,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       </tr>
       <tr>
         <td><a href="https://www.youtube.com/results?search_query=Chris+Greer+Wireshark+for+Beginners+Capture+Network+Traffic" target="_blank" style="color:var(--l3)">Wireshark beginner capture workflow videos</a></td>
-        <td>Use this search when you need step-by-step visual help with interface selection, capture start/stop, display filters, and reading packets.</td>
+        <td>Use this search for step-by-step visual help with interface selection, capture start/stop, display filters, and reading packets.</td>
       </tr>
     </tbody>
   </table>
@@ -2470,7 +2516,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <tr>
         <td><span class="hi3">Time spike</span></td>
         <td>Statistics → IO Graph</td>
-        <td>When traffic increased. Use this timestamp to correlate with Splunk, Sysmon EventCode 3, Windows logon failures, or attack commands you ran from Kali.</td>
+        <td>When traffic increased. Use this timestamp to correlate with Splunk, Sysmon EventCode 3, Windows logon failures, or attack commands run from Kali.</td>
       </tr>
       <tr>
         <td><span class="hi3">Connection starts</span></td>
@@ -2557,7 +2603,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="step-time">20 MIN</div><div class="step-tog">+</div>
     </div>
     <div class="step-body">
-      <p class="step-exp">Install Wireshark on your HP Envy Windows host. Take a baseline capture with no attacks running — this documents what normal traffic looks like in your lab. When you later capture during a Kali attack, the difference is immediately obvious in the Protocol Hierarchy.</p>
+      <p class="step-exp">Install Wireshark on the HP ENVY x360 Windows host. Take a baseline capture with no attacks running — this documents what normal traffic looks like in the lab. When you later capture during a Kali attack, the difference is immediately obvious in the Protocol Hierarchy.</p>
       <div class="code"><pre>
 <span class="cl cm"># Download: wireshark.org/#download → Windows Installer 64-bit</span>
 <span class="cl cm"># During install: Npcap = YES (required) | USBPcap = NO</span>
@@ -2566,7 +2612,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">mkdir C:\LabCaptures</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># Open Wireshark — find the VirtualBox NAT Network interface</span>
-<span class="cl cm"># It shows traffic between your VMs (192.168.10.x)</span>
+<span class="cl cm"># It shows traffic between the VMs (192.168.10.x)</span>
 <span class="cl cm"># Also capture on Wi-Fi adapter to see internet traffic baseline</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># Baseline capture (no attacks running — just normal VM idle traffic):</span>
@@ -2589,7 +2635,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="code"><pre>
 <span class="cl cm"># START WIRESHARK CAPTURE FIRST, then trigger the scan</span>
 <span class="cl ce"> </span>
-<span class="cl cm"># On Kali VM (192.168.10.250) — scan your Windows 10 VM:</span>
+<span class="cl cm"># On Kali VM (192.168.10.250) — scan the Windows 10 VM:</span>
 <span class="cl cd">nmap -sS -p 1-1000 192.168.10.[windows-ip]</span>
 <span class="cl cm"># -sS = SYN scan (stealth) — sends SYN, waits for SYN-ACK or RST</span>
 <span class="cl ce"> </span>
@@ -2689,8 +2735,8 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cd">index=sysmon EventCode=3 SourceIp="192.168.10.250" earliest=[pcap_start_time]</span>
 <span class="cl cd">| stats dc(DestinationPort) as ports by DestinationIp</span></pre>
       </div>
-      <div class="ch-del"><div class="dl">DELIVERABLE</div><p>DUAL-SOURCE FORENSIC REPORT: Evidence: nmap-scan.pcap + Splunk Sysmon data | Wireshark findings (attacker IP, ports scanned, open ports discovered, scan duration) | Splunk findings (same attack from endpoint perspective, EventCode 3 counts) | What each source showed that the other could not | Verdict: TCP SYN port scan from 192.168.10.250. Note: you know the ground truth (you ran the scan), which lets you validate your forensic conclusions. Save as Lab03-PCAP-Forensics-RealAttack.pdf</p></div>
-      <div class="ch-rw"><div class="dl">WHY THIS MATTERS</div><p>Analyzing PCAPs of attacks you ran closes the attacker/defender loop. You can validate your forensic conclusions because you know the ground truth. This dual-perspective analysis (packet level + endpoint level) is Tier 2 analyst work.</p></div>
+      <div class="ch-del"><div class="dl">DELIVERABLE</div><p>DUAL-SOURCE FORENSIC REPORT: Evidence: nmap-scan.pcap + Splunk Sysmon data | Wireshark findings (attacker IP, ports scanned, open ports discovered, scan duration) | Splunk findings (same attack from endpoint perspective, EventCode 3 counts) | What each source showed that the other could not | Verdict: TCP SYN port scan from 192.168.10.250. Note: you know the ground truth (you ran the scan), which lets you validate the forensic conclusions. Save as Lab03-PCAP-Forensics-RealAttack.pdf</p></div>
+      <div class="ch-rw"><div class="dl">WHY THIS MATTERS</div><p>Analyzing PCAPs of attacks you ran closes the attacker/defender loop. You can validate the forensic conclusions because you know the ground truth. This dual-perspective analysis (packet level + endpoint level) is Tier 2 analyst work.</p></div>
     </div>
   </div>
 
@@ -2723,16 +2769,16 @@ body.nav-collapsed .nav-toggle{left:12px}
       <div class="lb-m">FRAMEWORK<span>MITRE ATT&CK</span></div>
     </div>
   </div>
-  <div class="box danger"><div class="box-lbl">Before Every Kali Session — Verify Scope</div><p>Run <code style="color:var(--l4);font-size:16.5px;background:rgba(255,68,68,.1);padding:1px 4px">ip a</code> on Kali. Confirm your IP is 192.168.10.250. Only target 192.168.10.0/24 addresses. Document every attack with timestamp and exact command. These are your lab logs and your legal record of authorized testing.</p></div>
+  <div class="box danger"><div class="box-lbl">Before Every Kali Session — Verify Scope</div><p>Run <code style="color:var(--l4);font-size:16.5px;background:rgba(255,68,68,.1);padding:1px 4px">ip a</code> on Kali. Confirm your IP is 192.168.10.250. Only target 192.168.10.0/24 addresses. Document every attack with timestamp and exact command. These are the lab logs and your legal record of authorized testing.</p></div>
 
   <div class="box l4">
     <div class="box-lbl">Reference Docs — Kali Linux</div>
-    <p>This section is based on Kali Linux's official documentation for virtual machines, official images, tool documentation, metapackages, and community/support resources. The lab uses Kali as an attacker VM inside your isolated VirtualBox network and focuses on documented tools such as <strong>Nmap</strong> for network discovery, <strong>Hydra</strong> for controlled password attack simulation, and Metasploit-related workflows for exploitation practice. The commands are lab-specific and must only be run against systems you own or are explicitly authorized to test. References: <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/" target="_blank" style="color:var(--l4)">Kali inside VirtualBox</a> | <a href="https://www.kali.org/docs/introduction/download-official-kali-linux-images/" target="_blank" style="color:var(--l4)">Official Kali images</a> | <a href="https://www.kali.org/tools/" target="_blank" style="color:var(--l4)">Kali Tools</a> | <a href="https://www.kali.org/tools/nmap/" target="_blank" style="color:var(--l4)">Nmap in Kali</a> | <a href="https://www.kali.org/tools/hydra/" target="_blank" style="color:var(--l4)">Hydra in Kali</a> | <a href="https://www.kali.org/community/" target="_blank" style="color:var(--l4)">Kali community/support</a>.</p>
+    <p>This section is based on Kali Linux's official documentation for virtual machines, official images, tool documentation, metapackages, and community/support resources. The lab uses Kali as an attacker VM inside the isolated VirtualBox network and focuses on documented tools such as <strong>Nmap</strong> for network discovery, <strong>Hydra</strong> for controlled password attack simulation, and Metasploit-related workflows for exploitation practice. The commands are lab-specific and must only be run against systems you own or are explicitly authorized to test. References: <a href="https://www.kali.org/docs/virtualization/install-virtualbox-guest-vm/" target="_blank" style="color:var(--l4)">Kali inside VirtualBox</a> | <a href="https://www.kali.org/docs/introduction/download-official-kali-linux-images/" target="_blank" style="color:var(--l4)">Official Kali images</a> | <a href="https://www.kali.org/tools/" target="_blank" style="color:var(--l4)">Kali Tools</a> | <a href="https://www.kali.org/tools/nmap/" target="_blank" style="color:var(--l4)">Nmap in Kali</a> | <a href="https://www.kali.org/tools/hydra/" target="_blank" style="color:var(--l4)">Hydra in Kali</a> | <a href="https://www.kali.org/community/" target="_blank" style="color:var(--l4)">Kali community/support</a>.</p>
   </div>
 
   <div class="box l4">
     <div class="box-lbl">Reference Videos — Kali Linux</div>
-    <p>Optional reference videos: use these to deepen the attacker-side workflow after you understand the lab scope rules. Focus on legal lab setup, reconnaissance, command documentation, and how each Kali action creates evidence in Splunk, Sysmon, and Wireshark.</p>
+    <p>Optional reference videos: use these to deepen the attacker-side workflow after reviewing the lab scope rules. Focus on legal lab setup, reconnaissance, command documentation, and how each Kali action creates evidence in Splunk, Sysmon, and Wireshark.</p>
   </div>
 
   <table class="tbl">
@@ -2745,7 +2791,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     <tbody>
       <tr>
         <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+VirtualBox+official+setup+OffSec" target="_blank" style="color:var(--l4)">Kali Linux VirtualBox setup videos</a></td>
-        <td>Use this for visual help importing or installing Kali as a VM, configuring networking, and confirming the machine is isolated to your lab.</td>
+        <td>Use this for visual help importing or installing Kali as a VM, configuring networking, and confirming the machine is isolated to the lab.</td>
       </tr>
       <tr>
         <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+Nmap+tutorial+OffSec+network+scan" target="_blank" style="color:var(--l4)">Kali + Nmap reconnaissance videos</a></td>
@@ -2753,7 +2799,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       </tr>
       <tr>
         <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+Hydra+tutorial+authorized+lab" target="_blank" style="color:var(--l4)">Kali + Hydra lab videos</a></td>
-        <td>Use this for controlled password-attack demonstrations in lab environments, then compare the activity with your Splunk failed-logon detections.</td>
+        <td>Use this for controlled password-attack demonstrations in lab environments, then compare the activity with the Splunk failed-logon detections.</td>
       </tr>
       <tr>
         <td><a href="https://www.youtube.com/results?search_query=Kali+Linux+Metasploit+beginner+authorized+lab+OffSec" target="_blank" style="color:var(--l4)">Kali + Metasploit beginner lab videos</a></td>
@@ -2806,7 +2852,8 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cm"># ATTACK — Kali: spray one password against multiple redblue accounts</span>
 <span class="cl cm"># Create a small user list first:</span>
 <span class="cl cd">echo -e "analyst.one\nanalyst.two\nalice.johnson\nbob.smith" > /tmp/userlist.txt</span>
-<span class="cl cd">crackmapexec smb 192.168.10.7 -u /tmp/userlist.txt -p 'Password123' --continue-on-success</span>
+<span class="cl cm"># NOTE: CrackMapExec was deprecated in 2024. Current Kali uses NetExec (nxc) — same syntax, new binary:</span>
+<span class="cl cd">nxc smb 192.168.10.7 -u /tmp/userlist.txt -p 'Password123' --continue-on-success</span>
 <span class="cl cm"># MITRE ATT&CK: T1110.003 — Password Spraying</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># DETECT — Splunk:</span>
@@ -2827,6 +2874,41 @@ body.nav-collapsed .nav-toggle{left:12px}
   <div class="step">
     <div class="step-hd" onclick="tog(this)">
       <div class="step-num" style="border-color:var(--l4);color:var(--l4)">03</div>
+      <div class="step-info"><div class="step-phase">CREDENTIAL ATTACK — T1110.001</div><div class="step-title">Targeted Brute-Force with Hydra Against One Account</div></div>
+      <div class="step-time">20 MIN</div><div class="step-tog">+</div>
+    </div>
+    <div class="step-body">
+      <p class="step-exp">Hydra is a parallelized network login cracker. Unlike a password spray (which targets many accounts with one password to stay below lockout thresholds), a brute-force targets one account with many passwords. Run it against an SMB service and detect the concentrated surge of EventCode 4625 failures for a single account in Splunk. This exercise also lets you capture the brute-force traffic in Wireshark as a real PCAP artifact.</p>
+      <div class="code"><pre>
+<span class="cl cm"># ATTACK — Kali Linux: targeted brute-force of one account via SMB</span>
+<span class="cl cm"># Create a small password list first (realistic common passwords):</span>
+<span class="cl cd">echo -e "Password1\nPassword123\nWelcome1\nAdmin123\nLab@2026!\nSummer2026" > /tmp/passlist.txt</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Run Hydra against the domain controller SMB port:</span>
+<span class="cl cd">hydra -l analyst.one -P /tmp/passlist.txt smb://192.168.10.7 -V</span>
+<span class="cl cm"># -l : single username (brute-force = one account, many passwords)</span>
+<span class="cl cm"># -P : password list file</span>
+<span class="cl cm"># -V : verbose — shows each attempt (useful for PCAP correlation)</span>
+<span class="cl cm"># MITRE ATT&CK: T1110.001 — Brute Force: Password Guessing</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># DETECT — Splunk: brute-force signature = many 4625 events for ONE account</span>
+<span class="cl cd">index=wineventlog EventCode=4625</span>
+<span class="cl cd">| bucket _time span=1m</span>
+<span class="cl cd">| stats count, dc(Account_Name) as unique_accounts by _time, IpAddress, Account_Name</span>
+<span class="cl cd">| where count > 5 AND unique_accounts = 1</span>
+<span class="cl cm"># High count, unique_accounts=1 = brute-force (vs. spray where unique_accounts is high)</span>
+<span class="cl ce"> </span>
+<span class="cl cm"># Wipe the lockout after the test so analyst.one stays usable:</span>
+<span class="cl cd">Unlock-ADAccount -Identity analyst.one  # Run this on ADDC01 PowerShell as Admin</span></pre>
+      </div>
+      <div class="tip ti"><span class="tip-lbl">WIRESHARK CORRELATION</span> If Wireshark is running during this test, you can capture the Hydra brute-force traffic as a PCAP. Filter by <code style="color:var(--l3)">smb2 and ip.src==192.168.10.250</code> to see each login attempt packet. This gives you both network-level (Wireshark) and log-level (Splunk) evidence of the same attack — the dual-source forensic view from Lab 03.</div>
+      <div class="tip td"><span class="tip-lbl">LOCKOUT RISK</span> The domain Account Lockout Policy is set to 5 attempts. Hydra will lock analyst.one if the correct password is not in the first 5 tries. Always unlock the account in ADDC01 immediately after the test. Never run this test against Domain Admin accounts.</div>
+    </div>
+  </div>
+
+  <div class="step">
+    <div class="step-hd" onclick="tog(this)">
+      <div class="step-num" style="border-color:var(--l4);color:var(--l4)">04</div>
       <div class="step-info"><div class="step-phase">LATERAL MOVEMENT — T1021.002</div><div class="step-title">Remote Execution via SMB Using Valid Credentials</div></div>
       <div class="step-time">25 MIN</div><div class="step-tog">+</div>
     </div>
@@ -2834,7 +2916,8 @@ body.nav-collapsed .nav-toggle{left:12px}
       <p class="step-exp">If credential attacks succeed, an attacker moves laterally — connecting to other systems using the obtained credentials. This generates Logon Type 3 (network logon) events in Windows Security logs and process creation events in Sysmon. The combination of both is the lateral movement signature.</p>
       <div class="code"><pre>
 <span class="cl cm"># ATTACK — Kali: execute a command on Windows 10 using valid credentials:</span>
-<span class="cl cd">crackmapexec smb 192.168.10.[windows-ip] -u analyst.one -p 'Lab@Pass2024!' -x "whoami /all"</span>
+<span class="cl cm"># NetExec (nxc) replaces deprecated CrackMapExec — same syntax:</span>
+<span class="cl cd">nxc smb 192.168.10.[windows-ip] -u analyst.one -p 'Lab@2026!' -x "whoami /all"</span>
 <span class="cl cm"># MITRE ATT&CK: T1021.002 — Remote Services: SMB/Windows Admin Shares</span>
 <span class="cl ce"> </span>
 <span class="cl cm"># DETECT — Splunk: remote logon from Kali IP</span>
@@ -2868,8 +2951,8 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="ch-body">
       <div class="ch-lbl">SITUATION</div>
-      <p class="ch-sit">After completing Labs 01-04, document every attack you performed against the redblue environment and map each to a MITRE ATT&CK technique. For each technique, document whether your Splunk detection rules currently catch it.</p>
-      <div class="ch-task">YOUR TASK: Build a MITRE ATT&CK coverage matrix for your lab. For each attack: Technique ID, what you did, what Sysmon EventCode fired, whether your current detection covers it, and what improvement would close any gap.</div>
+      <p class="ch-sit">After completing Labs 01-04, document every attack you performed against the redblue environment and map each to a MITRE ATT&CK technique. For each technique, document whether the Splunk detection rules currently catch it.</p>
+      <div class="ch-task">YOUR TASK: Build a MITRE ATT&CK coverage matrix for the lab. For each attack: Technique ID, what you did, what Sysmon EventCode fired, whether your current detection covers it, and what improvement would close any gap.</div>
       <div class="ch-del"><div class="dl">DELIVERABLE</div><p>MITRE COVERAGE MATRIX TABLE: | T-Number | Technique Name | What You Did | Sysmon EventCode | Detection Rule | Covered? | Gap/Improvement | — one row per attack across Labs 01-04. This single document is one of the most impressive portfolio pieces you can produce at entry level. Save as Lab04-MITRE-Coverage-Matrix.pdf</p></div>
       <div class="ch-rw"><div class="dl">WHY THIS MATTERS</div><p>MITRE ATT&CK coverage analysis is what security engineers present to management when evaluating detection programs. Producing one based on attacks you actually ran demonstrates structured security thinking that is rare in entry-level candidates.</p></div>
     </div>
@@ -2917,11 +3000,11 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="concept c5">
       <div class="con-title">WHAT IS AN SLA (SERVICE LEVEL AGREEMENT)?</div>
-      <div class="con-body">An SLA defines the maximum time allowed to respond to and resolve an incident based on its severity. In security: <strong>SEV-A (Critical)</strong> — active breach, domain controller compromised — response within 1 hour. <strong>SEV-B (High)</strong> — confirmed threat, credential attack — response within 4 hours. <strong>SEV-C (Medium)</strong> — needs investigation, suspicious activity — response within 8 hours. Missing SLAs is a compliance finding. Documenting SLA compliance in your ticket queue demonstrates operational maturity.</div>
+      <div class="con-body">An SLA defines the maximum time allowed to respond to and resolve an incident based on its severity. In security: <strong>SEV-A (Critical)</strong> — active breach, domain controller compromised — response within 1 hour. <strong>SEV-B (High)</strong> — confirmed threat, credential attack — response within 4 hours. <strong>SEV-C (Medium)</strong> — needs investigation, suspicious activity — response within 8 hours. Missing SLAs is a compliance finding. Documenting SLA compliance in the ticket queue demonstrates operational maturity.</div>
     </div>
     <div class="concept c5">
       <div class="con-title">HOW SPLUNK ALERTS CONNECT TO TICKETS</div>
-      <div class="con-body">In enterprise SOCs, SIEM alerts automatically create tickets (this is called SOAR — Security Orchestration, Automation, and Response). In your lab, you manually create the Spiceworks ticket when a Splunk alert fires, then paste the Splunk search results and screenshots as internal notes inside the ticket. This documents the full investigation chain from detection through resolution in one place — exactly what auditors, managers, and legal teams need to review.</div>
+      <div class="con-body">In enterprise SOCs, SIEM alerts automatically create tickets (this is called SOAR — Security Orchestration, Automation, and Response). In the lab, you manually create the Spiceworks ticket when a Splunk alert fires, then paste the Splunk search results and screenshots as internal notes inside the ticket. This documents the full investigation chain from detection through resolution in one place — exactly what auditors, managers, and legal teams need to review.</div>
     </div>
   </div>
 
@@ -2960,17 +3043,17 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="box ok" style="margin-top:4px">
     <div class="box-lbl">Setup Instructions — Takes 5 Minutes</div>
-    <p><strong>Step 1:</strong> Go to spiceworks.com on your HP Envy browser. Click "Get Help Desk Free."<br>
+    <p><strong>Step 1:</strong> Go to spiceworks.com on the HP ENVY x360 browser. Click "Get Help Desk Free."<br>
     <strong>Step 2:</strong> Create a free account with your email — no credit card required.<br>
-    <strong>Step 3:</strong> After confirming your email, you are taken directly to the Help Desk dashboard in your browser.<br>
-    <strong>Step 4:</strong> That's it. No download. No install. No VM. You now have a professional ticketing system.</p>
+    <strong>Step 3:</strong> After confirming the account email, the Help Desk dashboard loads directly in the browser.<br>
+    <strong>Step 4:</strong> That's it. No download. No install. No VM. The lab now has a professional ticketing system.</p>
   </div>
 </section>
 
 <section class="sec" id="lab05c" style="background:rgba(255,149,0,.015)">
   <div class="sec-eye" style="color:var(--l5)">LAB 05 · CHALLENGES</div>
   <h2 style="color:#fff;margin-bottom:8px">TICKETING <span style="color:var(--l5)">WORKFLOWS</span></h2>
-  <p style="color:var(--muted);font-size:19.5px;margin-bottom:20px;font-style:italic">Route your Lab 01–04 incidents through Spiceworks. Every challenge becomes a formal ticket from open to close with investigation evidence in the notes.</p>
+  <p style="color:var(--muted);font-size:19.5px;margin-bottom:20px;font-style:italic">Route all Lab 01–04 incidents through Spiceworks. Every challenge becomes a formal ticket from open to close with investigation evidence in the notes.</p>
 
   <div class="ch ch5">
     <div class="ch-hd" onclick="togC(this)">
@@ -2979,8 +3062,8 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="ch-body">
       <div class="ch-lbl">SITUATION</div>
-      <p class="ch-sit">You have signed up for Spiceworks Cloud. Now configure it to mirror a real enterprise helpdesk structure with departments, ticket categories, and priority levels that map to your lab's security and IT workflows.</p>
-      <div class="ch-task">YOUR TASK: Configure Spiceworks with departments, ticket categories matching your lab's incident types, and priority levels aligned to SLAs. Screenshot every configuration step.</div>
+      <p class="ch-sit">You have signed up for Spiceworks Cloud. Now configure it to mirror a real enterprise helpdesk structure with departments, ticket categories, and priority levels that map to the lab's security and IT workflows.</p>
+      <div class="ch-task">YOUR TASK: Configure Spiceworks with departments, ticket categories matching the lab's incident types, and priority levels aligned to SLAs. Screenshot every configuration step.</div>
       <div class="ch-lbl">CONFIGURATION GUIDE</div>
       <div class="code"><pre>
 <span class="cl cm"># In Spiceworks admin panel — configure these settings:</span>
@@ -3011,7 +3094,7 @@ body.nav-collapsed .nav-toggle{left:12px}
       <ol class="ch-steps">
         <li><p>Sign up at spiceworks.com and access the Help Desk dashboard</p></li>
         <li><p>Create all 4 departments listed above</p></li>
-        <li><p>Create all ticket categories matching your lab incident types</p></li>
+        <li><p>Create all ticket categories matching the lab incident types</p></li>
         <li><p>Set the priority/SLA structure</p></li>
         <li><p>Screenshot your completed configuration — this goes in your portfolio</p></li>
       </ol>
@@ -3027,7 +3110,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     </div>
     <div class="ch-body">
       <div class="ch-lbl">SITUATION</div>
-      <p class="ch-sit">Your Splunk DET-003 alert fired — lsass.exe access on ADDC01. This is your SEV-A incident from C-01-D. Route it through Spiceworks as a formal ticket, work the investigation, and close it with full documentation. This demonstrates the complete SOC workflow: detection → ticket → investigation → resolution.</p>
+      <p class="ch-sit">The Splunk DET-003 alert fired — lsass.exe access on ADDC01. This is the SEV-A incident from C-01-D. Route it through Spiceworks as a formal ticket, work the investigation, and close it with full documentation. This demonstrates the complete SOC workflow: detection → ticket → investigation → resolution.</p>
       <div class="ch-task">YOUR TASK: Create a SEV-A ticket in Spiceworks. Add Splunk search results as internal notes as you investigate. Escalate from SOC-Tier1 to SOC-Tier2 using Spiceworks ticket assignment. Close with formal resolution statement and remediation steps taken.</div>
       <div class="ch-lbl">TICKET STRUCTURE</div>
       <div class="code"><pre>
@@ -3100,7 +3183,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <span class="cl cm"># Notes: all 4 offboarding steps with timestamps, incident linkage note: "See ESC-001"</span></pre>
       </div>
       <div class="ch-del"><div class="dl">DELIVERABLE</div><p>TICKET QUEUE SCREENSHOT showing all 4 tickets with their status (resolved), plus individual ticket exports or screenshots for each. Your queue will show tickets across IT-Helpdesk, Sysadmin, different priorities, and all resolved. Save as Lab05-AD-Ticket-Queue.pdf</p></div>
-      <div class="ch-rw"><div class="dl">WHY THIS MATTERS</div><p>A screenshot of a populated helpdesk queue with different priorities, departments, and categories — all for real work you did in your lab — is exactly what "show me what you've built" means. Most candidates have zero hands-on ticketing system experience before their first job.</p></div>
+      <div class="ch-rw"><div class="dl">WHY THIS MATTERS</div><p>A screenshot of a populated helpdesk queue with different priorities, departments, and categories — all for real work you did in the lab — is exactly what "show me what you've built" means. Most candidates have zero hands-on ticketing system experience before their first job.</p></div>
     </div>
   </div>
 
@@ -3112,7 +3195,7 @@ body.nav-collapsed .nav-toggle{left:12px}
     <div class="ch-body">
       <div class="ch-lbl">SITUATION</div>
       <p class="ch-sit">Your SOC manager: "Can you pull the weekly ticket metrics? I need total tickets handled, breakdown by severity, SLA compliance, and one paragraph of analysis noting patterns and what we should focus on next week."</p>
-      <div class="ch-task">YOUR TASK: From your Spiceworks queue, compile a weekly metrics report for the redblue lab week. Include counts, severity breakdown, department breakdown, average time to close, and an analysis paragraph with one actionable recommendation.</div>
+      <div class="ch-task">YOUR TASK: From the Spiceworks queue, compile a weekly metrics report for the redblue lab week. Include counts, severity breakdown, department breakdown, average time to close, and an analysis paragraph with one actionable recommendation.</div>
       <div class="ch-del"><div class="dl">DELIVERABLE</div><p>WEEKLY METRICS REPORT: Week of [date] | Total tickets: [N] | By severity: Critical [N], High [N], Medium [N], Low [N] | By department: SOC-Tier1 [N], SOC-Tier2 [N], IT-Helpdesk [N], Sysadmin [N] | SLA compliance: [N]% | Mean time to close: [X] hours | ANALYSIS: "This week the redblue lab generated [pattern observed]. The most notable incident was [ESC-001 lsass event]. Recommendation for next week: [specific action to improve detection or process]." Save as Lab05-Weekly-Metrics-[date].pdf</p></div>
       <div class="ch-rw"><div class="dl">WHY THIS MATTERS</div><p>SOC and helpdesk managers review these metrics every week. Producing a clean metrics report with a genuine analysis paragraph — not just numbers — separates analysts who can run queries from analysts who can think about what they mean.</p></div>
     </div>
@@ -3125,7 +3208,7 @@ body.nav-collapsed .nav-toggle{left:12px}
   <h2 style="color:#fff;margin-bottom:8px">PORTFOLIO <span style="color:var(--l1)">CHECKLIST</span></h2>
   <p style="color:var(--muted);font-size:19.5px;margin-bottom:8px;font-style:italic">Every checked box is documented proof. When all are checked, your GitHub URL on a resume is worth more than the cert alone.</p>
   <div class="prog-wrap"><div class="prog-fill" id="pf" style="width:0%"></div></div>
-  <div class="prog-txt" id="pt">0 of 46 complete</div>
+  <div class="prog-txt" id="pt">0 of 47 complete</div>
 
   <div class="ck-sec s1">
     <h4>LAB 01 — SPLUNK + SYSMON (redblue domain)</h4>
@@ -3173,7 +3256,8 @@ body.nav-collapsed .nav-toggle{left:12px}
     <h4>LAB 04 — KALI LINUX ATTACKS (redblue targets)</h4>
     <div class="ck-wrap">
       <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">Nmap recon run against redblue lab and detected in Splunk Sysmon EID 3 (T1046)</div></div>
-      <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">Password spray run with CrackMapExec and detected via dc(Account_Name) Splunk query (T1110.003)</div></div>
+      <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">Password spray run with NetExec (nxc) and detected via dc(Account_Name) Splunk query (T1110.003)</div></div>
+      <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">Hydra brute-force run against analyst.one, detected via count+dc(Account_Name)=1 Splunk query (T1110.001), account unlocked after test</div></div>
       <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">Lateral movement simulated — LogonType 3 from 192.168.10.250 detected in Splunk (T1021.002)</div></div>
       <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">C-04-A: MITRE ATT&CK Coverage Matrix — all attack techniques mapped, detection gaps documented</div></div>
       <div class="ck-item"><div class="ck-box" onclick="ck(this)"></div><div class="ck-txt">C-04-B: Full Attack Chain IR Report IR-002 — all 4 stages with Splunk evidence at each stage</div></div>
@@ -3214,7 +3298,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 <section class="sec" id="resume">
   <div class="sec-eye">FOR YOUR RESUME</div>
   <h2 style="color:#fff;margin-bottom:16px">COPY-PASTE <span style="color:var(--l1)">BULLETS</span></h2>
-  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">Place under "Projects / Lab Experience." Add your GitHub URL next to each project name. If you have no work experience, put Projects above Education.</p>
+  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">Place under "Projects / Lab Experience." Add the GitHub URL next to each project name. For candidates with no work experience, put Projects above Education.</p>
 
   <div class="res-card rc1"><div class="res-lbl">LAB 01 — SPLUNK + SYSMON</div><p class="res-txt">Deployed Splunk Enterprise SIEM on Ubuntu Server 22.04 in an isolated virtual lab; installed and configured Sysmon on Windows domain-joined endpoints for enriched kernel-level telemetry beyond standard Windows Event Logs; ingested Sysmon and Windows Event Logs via Universal Forwarder; authored five detection rules covering port scanning (T1046), PowerShell execution (T1059.001), credential access via lsass.exe (T1003), registry persistence (T1547.001), and new service installation (T1543.003) — all mapped to MITRE ATT&CK; ran Atomic Red Team simulations and validated detection coverage; completed Tier 1 SOC workflows including alert triage with Sysmon evidence, detection gap analysis, shift handoff documentation, and CRITICAL-level Tier 2 escalation ticket writing for a domain controller credential access event.</p></div>
 
@@ -3222,7 +3306,7 @@ body.nav-collapsed .nav-toggle{left:12px}
 
   <div class="res-card rc3"><div class="res-lbl">LAB 03 — WIRESHARK</div><p class="res-txt">Captured and analyzed live network traffic including real TCP SYN port scan packets and HTTP credential exposure from a Kali Linux attacker VM; identified Nmap scan signatures via SYN flood patterns and RST response analysis; demonstrated cleartext credential interception over HTTP using the Wireshark Credentials tool; analyzed TLS ClientHello Server Name Indication (SNI) field to show that HTTPS destination hostnames remain visible despite encryption; produced dual-source forensic report correlating Wireshark packet-level evidence with Splunk Sysmon endpoint-level events for the same attack events.</p></div>
 
-  <div class="res-card rc4"><div class="res-lbl">LAB 04 — KALI LINUX ATTACK SIMULATIONS</div><p class="res-txt">Conducted authorized offensive security exercises against a self-administered Active Directory domain (redblue) using Kali Linux; performed network reconnaissance (T1046), password spraying with CrackMapExec (T1110.003), and lateral movement via SMB (T1021.002); detected each attack using Splunk Sysmon correlation rules; built a MITRE ATT&CK coverage matrix documenting detection coverage and gaps for all techniques exercised; produced a full-chain incident response report covering recon through execution with Splunk evidence at each attack stage.</p></div>
+  <div class="res-card rc4"><div class="res-lbl">LAB 04 — KALI LINUX ATTACK SIMULATIONS</div><p class="res-txt">Conducted authorized offensive security exercises against a self-administered Active Directory domain (redblue) using Kali Linux; performed network reconnaissance (T1046), password spraying with NetExec/nxc (T1110.003), and lateral movement via SMB (T1021.002); detected each attack using Splunk Sysmon correlation rules; built a MITRE ATT&CK coverage matrix documenting detection coverage and gaps for all techniques exercised; produced a full-chain incident response report covering recon through execution with Splunk evidence at each attack stage.</p></div>
 
   <div class="res-card rc5"><div class="res-lbl">LAB 05 — SPICEWORKS TICKETING SYSTEM</div><p class="res-txt">Configured and operated Spiceworks Cloud Help Desk to manage security and IT incidents generated by a five-lab home lab environment; established department structure (SOC-Tier1, SOC-Tier2, IT-Helpdesk, Sysadmin), ticket categories aligned to MITRE ATT&CK technique types, and SLA priority levels (SEV-A through SEV-C); routed SIEM-generated security alerts and Active Directory change management tickets through complete ticket lifecycle from creation through escalation to formal closure; documented Splunk investigation evidence within ticket internal notes; produced weekly SOC metrics report with SLA compliance analysis.</p></div>
 </section>
@@ -3231,19 +3315,19 @@ body.nav-collapsed .nav-toggle{left:12px}
 <section class="sec" id="interview">
   <div class="sec-eye">PRACTICE OUT LOUD UNTIL NATURAL</div>
   <h2 style="color:#fff;margin-bottom:8px">INTERVIEW <span style="color:var(--l1)">Q&A</span></h2>
-  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">These answers are yours because you built the labs. The difference between memorizing and knowing is audible in 60 seconds. Practice them out loud.</p>
+  <p style="color:var(--muted);font-size:19.5px;margin-bottom:18px;font-style:italic">These answers come from having built the labs, not from memorizing. The difference is audible in 60 seconds. Practice them out loud.</p>
 
   <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 01 — SYSMON</div><p>"What is Sysmon and how is it different from standard Windows Event Logs?"</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>Sysmon is a Windows system service and kernel-mode driver from Microsoft's Sysinternals suite. It installs on a Windows endpoint and runs permanently in the background, writing detailed security events to a dedicated log channel — Applications and Services Logs, Microsoft, Windows, Sysmon, Operational. Standard Windows logs tell you "a process was created." Sysmon tells you which process, what arguments it was given, what its parent process was, the hash of the executable, and what network connection it made immediately after. That chain of detail is what lets you reconstruct exactly what an attacker did. In my lab, when Kali ran Nmap against my Windows machine, Sysmon EventCode 3 generated hundreds of network connection events I could analyze in Splunk. Standard Windows logs would have missed the scan entirely.</p></div></div>
 
-  <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 01 — DETECTION</div><p>"What is the difference between a brute-force attack and a password spray, and how do you detect each in Splunk?"</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>A brute-force attack tries many passwords against one account — you detect it by finding many EventCode 4625 events for a single Account_Name. A password spray tries one common password against many accounts to stay below the lockout threshold per account — you detect it by finding EventCode 4625 events spread across many unique Account_Names from a single source IP. In my lab I ran both: Hydra for brute-force and CrackMapExec for password spray. The Splunk detection is completely different: brute-force uses count where count exceeds threshold; spray uses dc(Account_Name) — distinct count of unique accounts — where that number exceeds threshold from one IP. Using the wrong detection logic means you miss one of them entirely.</p></div></div>
+  <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 01 — DETECTION</div><p>"What is the difference between a brute-force attack and a password spray, and how do you detect each in Splunk?"</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>A brute-force attack tries many passwords against one account — you detect it by finding many EventCode 4625 events for a single Account_Name. A password spray tries one common password against many accounts to stay below the lockout threshold per account — you detect it by finding EventCode 4625 events spread across many unique Account_Names from a single source IP. In my lab I ran both: Hydra for targeted brute-force against one account, and NetExec (nxc) for a password spray across multiple accounts. The Splunk detection is completely different: brute-force uses count where count exceeds threshold for a single Account_Name; spray uses dc(Account_Name) — distinct count of unique accounts — where that number exceeds threshold from one IP. Using the wrong detection logic means you miss one of them entirely.</p></div></div>
 
   <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 02 — ACTIVE DIRECTORY</div><p>"Walk me through how you would handle a terminated employee who was involved in a security incident."</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>Speed is critical — every minute the account stays active is a risk window. First action is Disable-ADAccount immediately, then verify Enabled=False before touching anything else. Reset the password to a random string to block cached credential use. Remove from all security groups to revoke resource access. Move to a Disabled-Accounts OU — never delete immediately because HR, legal, or forensics may need the account history. Critically, I also cross-reference in Splunk by searching for the user's activity in the last 24 hours before disabling — because if the account was involved in a security incident, that activity timeline is evidence. In my redblue lab, the analyst.two offboarding was directly linked to a lsass credential dumping attempt on my domain controller — I documented both together in the same ticket in Spiceworks.</p></div></div>
 
-  <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 04 — MITRE ATT&CK</div><p>"What is MITRE ATT&CK and how did you use it in your lab?"</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>MITRE ATT&CK is a knowledge base of adversary tactics and techniques cataloged from real-world observations. It organizes attacks by tactic — reconnaissance, initial access, execution, persistence, credential access, lateral movement — and assigns each technique a T-number. In my lab I used it as both an attack guide and a detection framework. When I ran Nmap from Kali, that's T1046 — Network Service Discovery. When I ran a password spray with CrackMapExec, that's T1110.003. For each attack I ran, I documented what Sysmon EventCode fired and whether my Splunk detection rules covered it. The result was a MITRE coverage matrix showing my detection capabilities and gaps. That's the same analysis security engineers produce when evaluating enterprise detection programs.</p></div></div>
+  <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 04 — MITRE ATT&CK</div><p>"What is MITRE ATT&CK and how did you use it in the lab?"</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>MITRE ATT&CK is a knowledge base of adversary tactics and techniques cataloged from real-world observations. It organizes attacks by tactic — reconnaissance, initial access, execution, persistence, credential access, lateral movement — and assigns each technique a T-number. In my lab I used it as both an attack guide and a detection framework. When I ran Nmap from Kali, that's T1046 — Network Service Discovery. When I ran a password spray with NetExec (nxc), that's T1110.003. For each attack I ran, I documented what Sysmon EventCode fired and whether my Splunk detection rules covered it. The result was a MITRE coverage matrix showing my detection capabilities and gaps. That's the same analysis security engineers produce when evaluating enterprise detection programs.</p></div></div>
 
   <div class="qa"><div class="qa-q"><div class="qa-ql">LAB 05 — TICKETING</div><p>"Have you used a ticketing system before? Walk me through how you'd handle a security alert from detection to closure."</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>Yes — I used Spiceworks Cloud in my home lab to manage security and IT tickets. When my Splunk detection for lsass access on the domain controller fired, I created a Critical priority ticket in Spiceworks with the category "Security Alert — Credential Access." As I investigated in Splunk, I pasted my search queries and results directly into the ticket as internal notes — building the evidence trail inside the ticket. I escalated it from SOC-Tier1 to SOC-Tier2 using the ticket assignment function. When the investigation was complete, I wrote a formal resolution statement noting what was found, what remediation steps were taken, and closed the ticket. The ticket system creates an auditable record of every investigation — which is what auditors, managers, and legal teams need when they ask "what did you do and when did you do it."</p></div></div>
 
-  <div class="qa"><div class="qa-q"><div class="qa-ql">ALL LABS — MOST IMPORTANT QUESTION</div><p>"Tell me about something in your lab that broke and how you fixed it."</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>[This is yours to write. Be specific about a real problem from your lab. Use this format: what broke → what you thought was wrong first → what it actually was → what you did to fix it → what you would do differently. Honest troubleshooting stories are worth more in an interview than perfect answers. Every interviewer has seen hundreds of polished answers. Almost none of them have seen someone say "here's exactly what broke, here's the error message I saw, here's the rabbit hole I went down, here's what actually fixed it." That's the answer that gets you hired.]</p></div></div>
+  <div class="qa"><div class="qa-q"><div class="qa-ql">ALL LABS — MOST IMPORTANT QUESTION</div><p>"Tell me about something in the lab that broke and how you fixed it."</p></div><div class="qa-a"><div class="qa-al">YOUR ANSWER</div><p>[This is yours to write. Be specific about a real problem from the lab. Use this format: what broke → what you thought was wrong first → what it actually was → what you did to fix it → what you would do differently. Honest troubleshooting stories are worth more in an interview than perfect answers. Every interviewer has seen hundreds of polished answers. Almost none of them have seen someone say "here's exactly what broke, here's the error message I saw, here's the rabbit hole I went down, here's what actually fixed it." That's the answer that gets you hired.]</p></div></div>
 </section>
 
 <footer class="footer">
@@ -3271,7 +3355,7 @@ if(navToggle){
 function tog(hd){hd.closest('.step').classList.toggle('open')}
 function togC(hd){hd.closest('.ch').classList.toggle('open')}
 
-const TOTAL=46;
+const TOTAL=47;
 function ck(b){
   b.classList.toggle('done');
   b.textContent=b.classList.contains('done')?' ✓':'';
