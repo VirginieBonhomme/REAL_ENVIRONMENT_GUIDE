@@ -263,11 +263,93 @@ body::after{content:'';position:fixed;inset:0;opacity:.02;pointer-events:none;z-
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--dim)}
 
-@media(max-width:840px){
-  .nav{display:none}.main{margin-left:0}
-  .hero,.sec{padding:28px 20px}
+@media(max-width:1120px){
+  .nav{width:188px}
+  .main{margin-left:188px}
+  .nav-name{font-size:27px}
+  .nla{font-size:12px;padding:5px 13px}
+  .hero,.sec{padding-left:36px;padding-right:36px}
   .hero-stats{grid-template-columns:repeat(3,1fr)}
-  .concepts{grid-template-columns:1fr}
+}
+
+@media(max-width:840px){
+  body{font-size:19px;line-height:1.65}
+  .nav{
+    position:sticky;top:0;left:auto;bottom:auto;width:100%;height:auto;
+    display:flex;align-items:center;gap:0;overflow-x:auto;overflow-y:hidden;
+    border-right:0;border-bottom:1px solid var(--b1);padding:0;background:rgba(5,14,26,.98);
+    -webkit-overflow-scrolling:touch
+  }
+  .nav-brand{display:none}
+  .nav-sec{display:none}
+  .nla{
+    flex:0 0 auto;border-left:0;border-bottom:2px solid transparent;
+    padding:12px 13px;font-size:12px;white-space:nowrap;min-height:44px
+  }
+  .nla:hover,.nla.on{border-left-color:transparent;border-bottom-color:var(--l1)}
+  .nla.n2:hover,.nla.n2.on{border-left-color:transparent;border-bottom-color:var(--l2)}
+  .nla.n3:hover,.nla.n3.on{border-left-color:transparent;border-bottom-color:var(--l3)}
+  .nla.n4:hover,.nla.n4.on{border-left-color:transparent;border-bottom-color:var(--l4)}
+  .nla.n5:hover,.nla.n5.on{border-left-color:transparent;border-bottom-color:var(--l5)}
+  .main{margin-left:0}
+  .hero,.sec{padding:28px 20px}
+  .hero::before{font-size:170px;right:-30px;top:-20px}
+  .hero h1{font-size:clamp(46px,13vw,68px)}
+  .hero-sub,.lb-sub,.box p,.step-exp,.ch-sit,.ch-task,.res-txt,.qa-a p{font-size:18px}
+  .sec h2{font-size:clamp(34px,10vw,48px)}
+  .hero-stats{grid-template-columns:repeat(2,1fr)}
+  .hstat .n{font-size:31px}
+  .hstat .l{font-size:11px;letter-spacing:1.5px}
+  .concepts,.concepts[style]{grid-template-columns:1fr!important}
+  .concept{padding:14px 15px}
+  .con-body,.tbl,.sysmon-table,.ck-txt,.ch-steps li p,.ch-del p,.ch-rw p{font-size:17px}
+  .lbanner{padding:18px 18px}
+  .lbanner::after{font-size:100px}
+  .lb-title{font-size:34px;line-height:1.1}
+  .lb-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .lb-m span{font-size:16px}
+  .step-hd{align-items:flex-start;gap:8px;padding:12px}
+  .step-info{min-width:0}
+  .step-title{font-size:18px;line-height:1.35}
+  .step-time{font-size:11px;margin-top:2px}
+  .step-body,.ch-body{padding:14px 12px}
+  .code{padding:10px 12px;max-width:100%;overflow-x:auto}
+  .cl{font-size:14px;line-height:1.75}
+  .tbl,.sysmon-table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .tbl th,.tbl td,.sysmon-table th,.sysmon-table td{min-width:160px}
+  .sysmon-table th:nth-child(4),.sysmon-table td:nth-child(4){min-width:300px}
+  .ch-hd{padding:13px 14px}
+  .ch-hd>div{min-width:0}
+  .ch-hd>div>div{flex-wrap:wrap}
+  .ch-hl{font-size:24px;line-height:1.15}
+  .ptags{gap:7px}
+  .ptag{font-size:11px;letter-spacing:1.4px}
+  .footer{padding:22px 20px}
+  a{overflow-wrap:anywhere}
+}
+
+@media(max-width:520px){
+  body{font-size:18px}
+  .hero,.sec{padding:24px 14px}
+  .hero-eye,.sec-eye{font-size:11px;letter-spacing:2px}
+  .sec-eye::after{display:none}
+  .hero h1{font-size:clamp(40px,15vw,56px)}
+  .hero-stats,.lb-meta{grid-template-columns:1fr}
+  .hstat{padding:10px 12px}
+  .box{padding:12px 13px}
+  .box-lbl,.con-title,.ch-lbl,.ck-sec h4,.res-lbl,.qa-ql,.qa-al{letter-spacing:2px}
+  .lb-title{font-size:30px}
+  .lb-eye{font-size:11px;letter-spacing:2px}
+  .step-hd{display:grid;grid-template-columns:26px 1fr 22px;align-items:flex-start}
+  .step-time{grid-column:2;grid-row:2;margin-top:3px}
+  .step-tog{grid-column:3;grid-row:1}
+  .ch-hd{gap:8px}
+  .ch-hl{font-size:22px}
+  .ch-task,.ch-del,.ch-rw{padding:9px 11px}
+  .cl{font-size:13px}
+  .tbl th,.tbl td,.sysmon-table th,.sysmon-table td{min-width:150px;padding:7px 9px}
+  .footer{display:block}
+  .footer div+div{margin-top:8px}
 }
 </style>
 </head>
